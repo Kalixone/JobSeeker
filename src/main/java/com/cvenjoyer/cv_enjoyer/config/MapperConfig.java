@@ -7,7 +7,7 @@ import org.mapstruct.NullValueCheckStrategy;
         componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
-        implementationPackage = "com.cvenjoyer.cv_enjoyer.mapper"
+        implementationPackage = "com.cvenjoyer.cv_enjoyer.mapper.impl"
 )
 public class MapperConfig {
 }
