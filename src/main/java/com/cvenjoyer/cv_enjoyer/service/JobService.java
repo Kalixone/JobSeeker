@@ -15,4 +15,8 @@ public interface JobService {
     JobDto findById(Long id);
     void checkAndExpireOldApplications();
     JobDto updateJobStatus(Long id, UpdateJobStatusRequestDto updateJobStatusRequestDto);
+    List<JobDto> getJobsSortedBySalary();
+    List<JobDto> getOnlyAppliedStatus();
+    List<JobDto> getOnlyRejectedStatus();
+    List<JobDto> getOnlyExpiredStatus();
 }

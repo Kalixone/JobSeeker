@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,5 +83,41 @@ public class JobServiceImpl implements JobService {
         }
         jobRepository.save(job);
         return jobMapper.toDto(job);
+    }
+
+    @Override
+    public List<JobDto> getJobsSortedBySalary() {
+        Comparator<Job> jobComparator = new Comparator<>() {
+            @Override
+            public int compare(Job o1, Job o2) {
+                return o2.getSalary().compareTo(o1.getSalary());
+            }
+        };
+
+        return jobRepository.findAll().stream()
+                .sorted(jobComparator)
+                .map(jobMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<JobDto> getOnlyAppliedStatus() {
+        return jobRepository.findByJobStatus(Job.JobStatus.APPLIED)
+                .stream()
+                .map(jobMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<JobDto> getOnlyRejectedStatus() {
+        return jobRepository.findByJobStatus(Job.JobStatus.REJECTED)
+                .stream()
+                .map(jobMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<JobDto> getOnlyExpiredStatus() {
+        return jobRepository.findByJobStatus(Job.JobStatus.EXPIRED)
+                .stream()
+                .map(jobMapper::toDto).collect(Collectors.toList());
     }
 }
