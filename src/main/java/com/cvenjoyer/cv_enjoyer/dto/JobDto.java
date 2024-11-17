@@ -11,9 +11,9 @@ public record JobDto(
         String location,
         BigDecimal salary,
         LocalDate applicationDate,
+        LocalDate feedBackDate,
         Job.JobStatus jobStatus,
         Job.JobType jobType,
-        LocalDate feedBackDate,
         String link,
         String companyWebsite,
         String contactEmail
