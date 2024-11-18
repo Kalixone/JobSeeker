@@ -29,6 +29,19 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+    private String englishLevel;
+    @ElementCollection
+    @CollectionTable(name = "user_frameworks", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "framework")
+    private Set<String> frameworks;
+    @ElementCollection
+    @CollectionTable(name = "user_languages", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "language")
+    private Set<String> programmingLanguages;
+    @ElementCollection
+    @CollectionTable(name = "user_experience_levels", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "experience_level")
+    private Set<String> experienceLevel;
     @ToStringExclude
     private boolean isDeleted;
 

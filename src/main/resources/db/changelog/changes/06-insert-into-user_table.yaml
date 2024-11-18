@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8-insert-users
+      author: kalixone
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: user1@example.com
+              - column:
+                  name: first_name
+                  value: John
+              - column:
+                  name: last_name
+                  value: Doe
+              - column:
+                  name: password
+                  value: '$2a$10$of9yUmjdNJTibOFfIvG9TeHK1pZHH/BbnR0bavYqSqC0lKwb9Q7/2'
+              - column:
+                  name: city
+                  value: City1
+              - column:
+                  name: english_level
+                  value: B2
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: admin1@example.com
+              - column:
+                  name: first_name
+                  value: Admin
+              - column:
+                  name: last_name
+                  value: Manager
+              - column:
+                  name: password
+                  value: '$2a$10$of9yUmjdNJTibOFfIvG9TeHK1pZHH/BbnR0bavYqSqC0lKwb9Q7/2'
+              - column:
+                  name: city
+                  value: City2
+              - column:
+                  name: english_level
+                  value: C1

@@ -42,6 +42,10 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(requestDto.password()));
         user.setCity(requestDto.city());
+        user.setEnglishLevel(requestDto.englishLevel());
+        user.setFrameworks(requestDto.frameworks());
+        user.setExperienceLevel(requestDto.experienceLevel());
+        user.setProgrammingLanguages(requestDto.programmingLanguages());
         User savedUser = userRepository.save(user);
         return userMapper.toUserResponse(savedUser);
     }
