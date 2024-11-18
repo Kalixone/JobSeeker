@@ -30,15 +30,15 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
     private String englishLevel;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_frameworks", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "framework")
     private Set<String> frameworks;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_languages", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "language")
     private Set<String> programmingLanguages;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_experience_levels", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "experience_level")
     private Set<String> experienceLevel;
