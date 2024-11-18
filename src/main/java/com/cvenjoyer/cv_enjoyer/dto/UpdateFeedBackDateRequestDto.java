@@ -1,11 +1,11 @@
 package com.cvenjoyer.cv_enjoyer.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 public record UpdateFeedBackDateRequestDto(
-        @NotBlank
+        @NotNull(message = "Feedback date is required")
         LocalDate feedBackDate
 ) {
 }

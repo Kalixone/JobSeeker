@@ -7,6 +7,7 @@ import com.cvenjoyer.cv_enjoyer.dto.UpdateJobStatusRequestDto;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -20,7 +21,7 @@ public class JobController {
 
     @PostMapping
     @Operation(summary = "Create a new job", description = "Allows the user to create a new job with all necessary details.")
-    public JobDto createJob(@RequestBody CreateJobRequestDto createJobRequestDto) {
+    public JobDto createJob(@RequestBody @Valid CreateJobRequestDto createJobRequestDto) {
         return jobService.createJob(createJobRequestDto);
     }
 
@@ -34,7 +35,7 @@ public class JobController {
     @PutMapping("/{id}/feedback")
     @Operation(summary = "Update feedback date", description = "Updates the feedback date for a specific job by its ID.")
     public JobDto updateFeedBackDate(@PathVariable Long id,
-                                     @RequestBody UpdateFeedBackDateRequestDto updateFeedBackDateRequestDto) {
+                                     @RequestBody @Valid UpdateFeedBackDateRequestDto updateFeedBackDateRequestDto) {
         return jobService.updateFeedBackDate(id, updateFeedBackDateRequestDto);
     }
 
@@ -47,7 +48,7 @@ public class JobController {
     @PutMapping("/{id}/status")
     @Operation(summary = "Update job status", description = "Updates the status of a specific job by its ID.")
     public JobDto updateJobStatus(@PathVariable Long id,
-                                  @RequestBody UpdateJobStatusRequestDto updateJobStatusRequestDto) {
+                                  @RequestBody @Valid UpdateJobStatusRequestDto updateJobStatusRequestDto) {
         return jobService.updateJobStatus(id, updateJobStatusRequestDto);
     }
 

@@ -1,0 +1,291 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-roles-table
+      author: kalixone
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 2-create-users-table
+      author: kalixone
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: first_name
+                  type: VARCHAR(100)
+              - column:
+                  name: last_name
+                  type: VARCHAR(100)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(100)
+              - column:
+                  name: is_deleted
+                  type: BOOLEAN
+                  defaultValue: false
+
+  - changeSet:
+      id: 3-create-user-roles-table
+      author: kalixone
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: user_roles
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_user_roles_user_id
+        - addForeignKeyConstraint:
+            baseTableName: user_roles
+            baseColumnNames: role_id
+            referencedTableName: roles
+            referencedColumnNames: id
+            constraintName: fk_user_roles_role_id
+
+  - changeSet:
+      id: 4-create-jobs-table
+      author: kalixone
+      changes:
+        - createTable:
+            tableName: jobs
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: company_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: position
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: VARCHAR(255)
+              - column:
+                  name: salary
+                  type: DECIMAL(10,2)
+              - column:
+                  name: application_date
+                  type: DATE
+              - column:
+                  name: job_status
+                  type: VARCHAR(50)
+              - column:
+                  name: job_type
+                  type: VARCHAR(50)
+              - column:
+                  name: feedback_date
+                  type: DATE
+              - column:
+                  name: link
+                  type: VARCHAR(255)
+              - column:
+                  name: company_website
+                  type: VARCHAR(255)
+              - column:
+                  name: contact_email
+                  type: VARCHAR(255)
+
+  - changeSet:
+      id: 5-insert-roles
+      author: kalixone
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: ADMIN
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: USER
+
+  - changeSet:
+      id: 6-insert-users
+      author: kalixone
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: user1@example.com
+              - column:
+                  name: first_name
+                  value: John
+              - column:
+                  name: last_name
+                  value: Doe
+              - column:
+                  name: password
+                  value: '$2a$10$of9yUmjdNJTibOFfIvG9TeHK1pZHH/BbnR0bavYqSqC0lKwb9Q7/2'
+              - column:
+                  name: city
+                  value: City1
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: admin1@example.com
+              - column:
+                  name: first_name
+                  value: Admin
+              - column:
+                  name: last_name
+                  value: Manager
+              - column:
+                  name: password
+                  value: '$2a$10$of9yUmjdNJTibOFfIvG9TeHK1pZHH/BbnR0bavYqSqC0lKwb9Q7/2'
+              - column:
+                  name: city
+                  value: City2
+
+  - changeSet:
+      id: 7-insert-user-roles
+      author: kalixone
+      changes:
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 2
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 1
+
+  - changeSet:
+      id: 8-insert-jobs
+      author: kalixone
+      changes:
+        - insert:
+            tableName: jobs
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: company_name
+                  value: Google
+              - column:
+                  name: position
+                  value: Software Engineer
+              - column:
+                  name: location
+                  value: Mountain View
+              - column:
+                  name: salary
+                  value: 120000.00
+              - column:
+                  name: application_date
+                  value: '2024-01-01'
+              - column:
+                  name: job_status
+                  value: APPLIED
+              - column:
+                  name: job_type
+                  value: REMOTE
+        - insert:
+            tableName: jobs
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: company_name
+                  value: Meta
+              - column:
+                  name: position
+                  value: Data Scientist
+              - column:
+                  name: location
+                  value: Menlo Park
+              - column:
+                  name: salary
+                  value: 130000.00
+              - column:
+                  name: application_date
+                  value: '2024-02-01'
+              - column:
+                  name: job_status
+                  value: REJECTED
+              - column:
+                  name: job_type
+                  value: HYBRID
