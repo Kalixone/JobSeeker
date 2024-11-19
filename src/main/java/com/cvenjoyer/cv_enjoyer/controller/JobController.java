@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class JobController {
 
     @PostMapping
     @Operation(summary = "Create a new job", description = "Allows the user to create a new job with all necessary details.")
-    public JobDto createJob(@RequestBody @Valid CreateJobRequestDto createJobRequestDto) {
-        return jobService.createJob(createJobRequestDto);
+    public JobDto createJob(Authentication authentication, @RequestBody @Valid CreateJobRequestDto createJobRequestDto) {
+        return jobService.createJob(authentication, createJobRequestDto);
     }
 
     @GetMapping
@@ -74,5 +75,11 @@ public class JobController {
     @Operation(summary = "Get expired jobs", description = "Fetch a list of jobs with the status 'EXPIRED'.")
     public List<JobDto> getOnlyExpiredStatus() {
         return jobService.getOnlyExpiredStatus();
+    }
+
+    @GetMapping("/findByKilometers")
+    @Operation(summary = "Find jobs by kilometers range", description = "Fetch jobs where kilometers are between the specified 'from' and 'to' values.")
+    public List<JobDto> findByKilometersBetween(@RequestParam Double from, @RequestParam Double to) {
+        return jobService.findByKilometersBetween(from, to);
     }
 }

@@ -27,6 +27,7 @@ public class Job {
     private String link;
     private String companyWebsite;
     private String contactEmail;
+    private Double kilometers;
 
     public enum JobStatus {
         APPLIED,

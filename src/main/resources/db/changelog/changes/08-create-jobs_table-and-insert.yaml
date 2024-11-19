@@ -60,6 +60,9 @@ databaseChangeLog:
               - column:
                   name: contact_email
                   type: varchar(255)
+              - column:
+                  name: kilometers
+                  type: double precision
 
   - changeSet:
       id: 2-insert-jobs
@@ -98,6 +101,9 @@ databaseChangeLog:
               - column:
                   name: contact_email
                   value: contact@google.com
+              - column:
+                  name: kilometers
+                  value: 50.75
 
   - changeSet:
       id: 3-insert-jobs
@@ -136,3 +142,6 @@ databaseChangeLog:
               - column:
                   name: contact_email
                   value: hr@meta.com
+              - column:
+                  name: kilometers
+                  value: 30.50

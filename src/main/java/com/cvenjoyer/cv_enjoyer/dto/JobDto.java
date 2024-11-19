@@ -16,6 +16,7 @@ public record JobDto(
         Job.JobType jobType,
         String link,
         String companyWebsite,
-        String contactEmail
+        String contactEmail,
+        Double kilometers
 ) {
 }
