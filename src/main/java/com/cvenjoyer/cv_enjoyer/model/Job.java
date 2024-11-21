@@ -38,6 +38,6 @@ public class Job {
     public enum JobType {
         STATIONARY,
         HYBRID,
-        REMOTE
+        REMOTE,
     }
 }

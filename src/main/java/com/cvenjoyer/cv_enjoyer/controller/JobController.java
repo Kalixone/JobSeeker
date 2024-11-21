@@ -1,9 +1,6 @@
 package com.cvenjoyer.cv_enjoyer.controller;
 
-import com.cvenjoyer.cv_enjoyer.dto.CreateJobRequestDto;
-import com.cvenjoyer.cv_enjoyer.dto.JobDto;
-import com.cvenjoyer.cv_enjoyer.dto.UpdateFeedBackDateRequestDto;
-import com.cvenjoyer.cv_enjoyer.dto.UpdateJobStatusRequestDto;
+import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
