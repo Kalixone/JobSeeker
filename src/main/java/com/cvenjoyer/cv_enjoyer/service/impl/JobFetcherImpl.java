@@ -2,10 +2,11 @@ package com.cvenjoyer.cv_enjoyer.service.impl;
 
 import com.cvenjoyer.cv_enjoyer.dto.RemoteApiJobDto;
 import com.cvenjoyer.cv_enjoyer.mapper.JobMapper;
-import com.cvenjoyer.cv_enjoyer.model.RemoteApiJob;
-import com.cvenjoyer.cv_enjoyer.model.RemoteApiResponse;
+import com.cvenjoyer.cv_enjoyer.model.JobApi;
+import com.cvenjoyer.cv_enjoyer.model.RemotiveJob;
+import com.cvenjoyer.cv_enjoyer.model.RemotiveJobResponse;
 import com.cvenjoyer.cv_enjoyer.model.User;
-import com.cvenjoyer.cv_enjoyer.repository.RemoteApiJobRepository;
+import com.cvenjoyer.cv_enjoyer.repository.JobApiRepository;
 import com.cvenjoyer.cv_enjoyer.service.JobFetcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class JobFetcherImpl implements JobFetcher {
-    private final RemoteApiJobRepository remoteApiJobRepository;
+
+    private final JobApiRepository remoteApiJobRepository;
     private final JobMapper jobMapper;
     private final RestTemplate restTemplate;
 
@@ -37,27 +39,30 @@ public class JobFetcherImpl implements JobFetcher {
         String searchQuery = String.join(",", allSearchTags);
         String url = "https://remotive.io/api/remote-jobs?tags=" + searchQuery;
 
-        RemoteApiResponse response = restTemplate.getForObject(url, RemoteApiResponse.class);
+        RemotiveJobResponse response = restTemplate.getForObject(url, RemotiveJobResponse.class);
 
         if (response != null && response.getJobs() != null) {
-            response.getJobs().forEach(jobData -> {
-                RemoteApiJob remoteApiJob = new RemoteApiJob();
-                remoteApiJob.setPosition(jobData.getPosition());
-                remoteApiJob.setCompanyName(jobData.getCompanyName());
-                remoteApiJob.setLink(jobData.getLink());
-                remoteApiJob.setCategory(jobData.getCategory());
-                List<String> frameworksInJob = jobData.getFrameworks();
-                remoteApiJob.setFrameworks(frameworksInJob);
-                remoteApiJob.setJobType(jobData.getJobType());
-                remoteApiJob.setPublicationDate(jobData.getPublicationDate());
-                remoteApiJob.setCandidateRequiredLocation(jobData.getCandidateRequiredLocation());
+            List<RemotiveJob> remotiveJobs = response.getJobs();
+            List<JobApi> jobApis = remotiveJobs.stream().map(result -> {
+                JobApi jobApi = new JobApi();
+                jobApi.setPosition(result.getPosition());
+                jobApi.setCompanyName(result.getCompanyName());
+                jobApi.setLink(result.getLink());
+                jobApi.setCategory(result.getCategory());
+                List<String> frameworks1 = result.getFrameworks();
+                jobApi.setFrameworks(frameworks1);
+                jobApi.setJobType(result.getJobType());
+                jobApi.setPublicationDate(result.getPublicationDate());
+                jobApi.setCandidateRequiredLocation(result.getCandidateRequiredLocation());
+                return jobApi;
+            }).collect(Collectors.toList());
 
-                remoteApiJobRepository.save(remoteApiJob);
-            });
+            remoteApiJobRepository.saveAll(jobApis);
         }
 
-        return remoteApiJobRepository.findAll().stream()
-                .map(jobMapper::toRemoteApiJobDto)
-                .collect(Collectors.toList());
+            return remoteApiJobRepository.findAll().stream()
+                    .map(jobMapper::toRemoteApiJobDto)
+                    .collect(Collectors.toList());
+        }
     }
-}
+

@@ -7,7 +7,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class RemoteApiResponse {
+public class RemotiveJobResponse {
+
     @JsonProperty("jobs")
-    private List<RemoteApiJob> jobs;
+    private List<RemotiveJob> jobs;
 }
