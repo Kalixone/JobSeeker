@@ -11,4 +11,8 @@ public interface UserService {
     UserDto updateExperienceLevel(Authentication authentication, UserUpdateExperienceLevelRequestDto userUpdateExperienceLevelRequestDto);
     UserDto updateEnglishLevel(Authentication authentication, UserUpdateEnglishLevelRequestDto userUpdateEnglishLevelRequestDto);
     UserDto myProfileInfo(Authentication authentication);
+    UserDto updateCity(Authentication authentication, UpdateCityRequestDto updateCityRequestDto);
+    UserDto resetFrameworks(Authentication authentication);
+    UserDto resetProgrammingLanguages(Authentication authentication);
+    UserDto resetExperienceLevel(Authentication authentication);
 }

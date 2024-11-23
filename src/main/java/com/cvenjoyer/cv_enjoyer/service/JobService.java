@@ -2,6 +2,7 @@ package com.cvenjoyer.cv_enjoyer.service;
 
 import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.model.NominatimResponse;
+import com.cvenjoyer.cv_enjoyer.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -34,4 +35,5 @@ public interface JobService {
     JobDto updateTags(Long id, UpdateTagsRequestDto updateTagsRequestDto);
     JobDto updateNotes(Long id, UpdateNotesRequestDto updateNotesRequestDto);
     void deleteById(Long id);
+    void updateDistancesForUserJobs(User user);
 }

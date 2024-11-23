@@ -328,6 +328,28 @@ public class JobServiceImpl implements JobService {
         jobRepository.deleteById(id);
     }
 
+    public void updateDistancesForUserJobs(User user) {
+        String newCity = user.getCity();
+
+        NominatimResponse userLocation = getLocation(newCity);
+        double userLat = userLocation.getLatitude();
+        double userLon = userLocation.getLongitude();
+
+        jobRepository.findByUser(user).forEach(job -> {
+            try {
+                NominatimResponse jobLocation = getLocation(job.getLocation());
+                double jobLat = jobLocation.getLatitude();
+                double jobLon = jobLocation.getLongitude();
+
+                double distance = calculateDistance(userLat, userLon, jobLat, jobLon);
+                job.setKilometers((double) Math.round(distance));
+                jobRepository.save(job);
+            } catch (LocationNotFoundException e) {
+                System.err.println("Error updating distance for job: " + e.getMessage());
+            }
+        });
+    }
+
     @Override
     public JobDto updateTags(Long id, UpdateTagsRequestDto updateTagsRequestDto) {
         Job job = jobRepository.findById(id).orElseThrow(

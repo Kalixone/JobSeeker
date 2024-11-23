@@ -7,6 +7,7 @@ import com.cvenjoyer.cv_enjoyer.model.Role;
 import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.repository.RoleRepository;
 import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
+import com.cvenjoyer.cv_enjoyer.service.JobService;
 import com.cvenjoyer.cv_enjoyer.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final JobService jobService;
 
     @Override
     public UserRegistrationResponseDto register
@@ -110,6 +112,45 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto myProfileInfo(Authentication authentication) {
         User principal = (User) authentication.getPrincipal();
+        return userMapper.toDto(principal);
+    }
+
+    @Override
+    public UserDto updateCity(Authentication authentication, UpdateCityRequestDto updateCityRequestDto) {
+        User principal = (User) authentication.getPrincipal();
+
+        principal.setCity(updateCityRequestDto.city());
+        userRepository.save(principal);
+
+        jobService.updateDistancesForUserJobs(principal);
+
+        return userMapper.toDto(principal);
+    }
+
+    @Override
+    public UserDto resetFrameworks(Authentication authentication) {
+        User principal = (User) authentication.getPrincipal();
+        Set<String> frameworks = principal.getFrameworks();
+        frameworks.clear();
+        userRepository.save(principal);
+        return userMapper.toDto(principal);
+    }
+
+    @Override
+    public UserDto resetProgrammingLanguages(Authentication authentication) {
+        User principal = (User) authentication.getPrincipal();
+        Set<String> programmingLanguages = principal.getProgrammingLanguages();
+        programmingLanguages.clear();
+        userRepository.save(principal);
+        return userMapper.toDto(principal);
+    }
+
+    @Override
+    public UserDto resetExperienceLevel(Authentication authentication) {
+        User principal = (User) authentication.getPrincipal();
+        Set<String> experienceLevel = principal.getExperienceLevel();
+        experienceLevel.clear();
+        userRepository.save(principal);
         return userMapper.toDto(principal);
     }
 }

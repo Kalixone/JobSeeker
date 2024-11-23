@@ -64,4 +64,40 @@ public class UserController {
         }
         return userService.myProfileInfo(authentication);
     }
+
+    @PutMapping("/update/city")
+    @PreAuthorize("hasAuthority('USER')")
+    UserDto updateCity(Authentication authentication, @RequestBody UpdateCityRequestDto updateCityRequestDto) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new AuthenticationException("User is not authenticated");
+        }
+        return userService.updateCity(authentication, updateCityRequestDto);
+    }
+
+    @DeleteMapping("/reset/frameworks")
+    @PreAuthorize("hasAuthority('USER')")
+    UserDto resetFrameworks(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new AuthenticationException("User is not authenticated");
+        }
+        return userService.resetFrameworks(authentication);
+    }
+
+    @DeleteMapping("/reset/programmingLanguages")
+    @PreAuthorize("hasAuthority('USER')")
+    UserDto resetProgrammingLanguages(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new AuthenticationException("User is not authenticated");
+        }
+        return userService.resetProgrammingLanguages(authentication);
+    }
+
+    @DeleteMapping("/reset/experienceLevel")
+    @PreAuthorize("hasAuthority('USER')")
+    UserDto resetExperienceLevel(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new AuthenticationException("User is not authenticated");
+        }
+        return userService.resetExperienceLevel(authentication);
+    }
 }
