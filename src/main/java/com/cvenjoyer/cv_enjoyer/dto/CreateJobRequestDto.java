@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 public record CreateJobRequestDto(
         @NotBlank(message = "Company name is required")
@@ -21,6 +22,8 @@ public record CreateJobRequestDto(
         @NotBlank(message = "Link is required")
         String link,
         String companyWebsite,
-        String contactEmail
+        String contactEmail,
+        Set<String> tags,
+        String notes
 ) {
 }

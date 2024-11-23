@@ -65,4 +65,3 @@ public class JobFetcherImpl implements JobFetcher {
                     .collect(Collectors.toList());
         }
     }
-

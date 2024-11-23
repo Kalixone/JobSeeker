@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface JobService {
     JobDto createJob(Authentication authentication, CreateJobRequestDto createJobRequestDto);
-    List<JobDto> getAllJobs();
+    List<JobDto> getAllJobs(Authentication authentication);
     JobDto updateFeedBackDate(Long id, UpdateFeedBackDateRequestDto updateFeedBackDateRequestDto);
     JobDto findById(Long id);
     void checkAndExpireOldApplications();

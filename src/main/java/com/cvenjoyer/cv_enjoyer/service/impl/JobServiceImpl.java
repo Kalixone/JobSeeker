@@ -30,12 +30,15 @@ public class JobServiceImpl implements JobService {
     private final JobRepository jobRepository;
     private final JobMapper jobMapper;
     private final RestTemplate restTemplate;
+
     @Override
-    public List<JobDto> getAllJobs() {
-       return jobRepository.findAll()
+    public List<JobDto> getAllJobs(Authentication authentication) {
+        User authenticatedUser = (User) authentication.getPrincipal();
+
+        return jobRepository.findByUser(authenticatedUser)
                 .stream()
                 .map(jobMapper::toDto)
-               .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -125,12 +128,14 @@ public class JobServiceImpl implements JobService {
         Job newJob = jobMapper.toModel(createJobRequestDto);
         newJob.setJobStatus(Job.JobStatus.APPLIED);
 
+        User authenticatedUser = (User) authentication.getPrincipal();
+        newJob.setUser(authenticatedUser);
+
         try {
             NominatimResponse firstApiResponse = getLocation(createJobRequestDto.location());
             double lat1 = firstApiResponse.getLatitude();
             double lon1 = firstApiResponse.getLongitude();
 
-            User authenticatedUser = (User) authentication.getPrincipal();
             String city = authenticatedUser.getCity();
             NominatimResponse secondApiResponse = getLocation(city);
             double lat2 = secondApiResponse.getLatitude();
@@ -142,6 +147,7 @@ public class JobServiceImpl implements JobService {
             System.err.println("Error occurred while fetching data: " + e.getMessage());
             throw e;
         }
+
         jobRepository.save(newJob);
         return jobMapper.toDto(newJob);
     }

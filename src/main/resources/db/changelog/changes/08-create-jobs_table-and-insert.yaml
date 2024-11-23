@@ -63,6 +63,12 @@ databaseChangeLog:
               - column:
                   name: kilometers
                   type: double precision
+              - column:
+                  name: notes
+                  type: text
+              - column:
+                  name: tags
+                  type: varchar(255)
 
   - changeSet:
       id: 2-insert-jobs
@@ -104,6 +110,12 @@ databaseChangeLog:
               - column:
                   name: kilometers
                   value: 50.75
+              - column:
+                  name: notes
+                  value: Exciting opportunity at Google!
+              - column:
+                  name: tags
+                  value: ["engineering", "remote"]
 
   - changeSet:
       id: 3-insert-jobs
@@ -145,3 +157,9 @@ databaseChangeLog:
               - column:
                   name: kilometers
                   value: 30.50
+              - column:
+                  name: notes
+                  value: Great potential at Meta.
+              - column:
+                  name: tags
+                  value: ["data", "science", "hybrid"]

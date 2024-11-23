@@ -28,8 +28,8 @@ public class JobController {
     @GetMapping
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Retrieve all jobs", description = "Fetch a list of all jobs.")
-    public List<JobDto> getAllJobs() {
-        return jobService.getAllJobs();
+    public List<JobDto> getAllJobs(Authentication authentication) {
+        return jobService.getAllJobs(authentication);
     }
 
 

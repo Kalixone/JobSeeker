@@ -3,6 +3,7 @@ package com.cvenjoyer.cv_enjoyer.dto;
 import com.cvenjoyer.cv_enjoyer.model.Job;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 public record JobDto(
         Long id,
@@ -17,6 +18,8 @@ public record JobDto(
         String link,
         String companyWebsite,
         String contactEmail,
-        Double kilometers
+        Double kilometers,
+        Set<String> tags,
+        String notes
 ) {
 }
