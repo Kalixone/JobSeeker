@@ -1,9 +1,6 @@
 package com.cvenjoyer.cv_enjoyer.service.impl;
 
-import com.cvenjoyer.cv_enjoyer.dto.CreateJobRequestDto;
-import com.cvenjoyer.cv_enjoyer.dto.JobDto;
-import com.cvenjoyer.cv_enjoyer.dto.UpdateFeedBackDateRequestDto;
-import com.cvenjoyer.cv_enjoyer.dto.UpdateJobStatusRequestDto;
+import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.exceptions.EntityNotFoundException;
 import com.cvenjoyer.cv_enjoyer.exceptions.LocationNotFoundException;
 import com.cvenjoyer.cv_enjoyer.mapper.JobMapper;
@@ -22,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -188,5 +187,153 @@ public class JobServiceImpl implements JobService {
                 .stream()
                 .map(jobMapper::toDto).collect(Collectors.toList());
         return collect;
+    }
+
+    @Override
+    public JobDto updateCompanyName(Long id, UpdateCompanyNameRequestDto updateCompanyNameRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setCompanyName(updateCompanyNameRequestDto.companyName());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updatePosition(Long id, UpdatePositionRequestDto updatePositionRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setPosition(updatePositionRequestDto.position());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateLocation(Authentication authentication, Long id, UpdateLocationRequestDto updateLocationRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        String oldLocation = job.getLocation();
+
+        job.setLocation(updateLocationRequestDto.location());
+
+        try {
+            NominatimResponse newLocationResponse = getLocation(updateLocationRequestDto.location());
+            double newLat = newLocationResponse.getLatitude();
+            double newLon = newLocationResponse.getLongitude();
+
+            User authenticatedUser = (User) authentication.getPrincipal();
+            String userCity = authenticatedUser.getCity();
+
+            NominatimResponse userLocationResponse = getLocation(userCity);
+            double userLat = userLocationResponse.getLatitude();
+            double userLon = userLocationResponse.getLongitude();
+
+            double distance = calculateDistance(newLat, newLon, userLat, userLon);
+            job.setKilometers((double) Math.round(distance));
+        } catch (LocationNotFoundException e) {
+            System.err.println("Error occurred while fetching location: " + e.getMessage());
+            throw e;
+        }
+
+        jobRepository.save(job);
+
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateSalary(Long id, UpdateSalaryRequestDto updateSalaryRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setSalary(updateSalaryRequestDto.salary());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateApplicationDate(Long id, UpdateApplicationDateRequestDto updateApplicationDateRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setApplicationDate(updateApplicationDateRequestDto.applicationDate());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateJobType(Long id, UpdateJobTypeRequestDto updateJobTypeRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setJobType(updateJobTypeRequestDto.jobType());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateLink(Long id, UpdateLinkRequestDto updateLinkRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setLink(updateLinkRequestDto.link());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateCompanyWebsite(Long id, UpdateCompanyWebsiteRequestDto updateCompanyWebsiteRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setCompanyWebsite(updateCompanyWebsiteRequestDto.companyWebsite());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateContactEmail(Long id, UpdateContactEmailRequestDto updateContactEmailRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setContactEmail(updateContactEmailRequestDto.contactEmail());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateKilometers(Long id, UpdateKilometersRequestDto updateKilometersRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setKilometers(updateKilometersRequestDto.kilometers());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateNotes(Long id, UpdateNotesRequestDto updateNotesRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        job.setNotes(updateNotesRequestDto.notes());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jobRepository.deleteById(id);
+    }
+
+    @Override
+    public JobDto updateTags(Long id, UpdateTagsRequestDto updateTagsRequestDto) {
+        Job job = jobRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Entity not found by ID: " + id));
+        Set<String> tags = job.getTags();
+        tags.addAll(updateTagsRequestDto.tags());
+        jobRepository.save(job);
+        return jobMapper.toDto(job);
     }
 }

@@ -90,4 +90,95 @@ public class JobController {
     public List<JobDto> findByKilometersBetween(@RequestParam Double from, @RequestParam Double to) {
         return jobService.findByKilometersBetween(from, to);
     }
+
+    @PutMapping("/{id}/companyName")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateCompanyName(@PathVariable Long id,
+                                  @RequestBody @Valid UpdateCompanyNameRequestDto updateCompanyNameRequestDto) {
+        return jobService.updateCompanyName(id, updateCompanyNameRequestDto);
+    }
+
+    @PutMapping("/{id}/position")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updatePostion(@PathVariable Long id,
+                                    @RequestBody @Valid UpdatePositionRequestDto updatePositionRequestDto) {
+        return jobService.updatePosition(id, updatePositionRequestDto);
+    }
+
+    @PutMapping("/{id}/location")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateLocation(Authentication authentication, @PathVariable Long id,
+                                @RequestBody @Valid UpdateLocationRequestDto updateLocationRequestDto) {
+        return jobService.updateLocation(authentication, id, updateLocationRequestDto);
+    }
+
+    @PutMapping("/{id}/salary")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateSalary(@PathVariable Long id,
+                                 @RequestBody @Valid UpdateSalaryRequestDto updateSalaryRequestDto) {
+        return jobService.updateSalary(id, updateSalaryRequestDto);
+    }
+
+    @PutMapping("/{id}/applicationDate")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateApplicationDate(@PathVariable Long id,
+                               @RequestBody @Valid UpdateApplicationDateRequestDto updateApplicationDateRequestDto) {
+        return jobService.updateApplicationDate(id, updateApplicationDateRequestDto);
+    }
+
+    @PutMapping("/{id}/jobType")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateJobType(@PathVariable Long id,
+                                        @RequestBody @Valid UpdateJobTypeRequestDto updateJobTypeRequestDto) {
+        return jobService.updateJobType(id, updateJobTypeRequestDto);
+    }
+
+    @PutMapping("/{id}/link")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateLink(@PathVariable Long id,
+                                @RequestBody @Valid UpdateLinkRequestDto updateLinkRequestDto) {
+        return jobService.updateLink(id, updateLinkRequestDto);
+    }
+
+    @PutMapping("/{id}/companyWebsite")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateCompanyWebsite(@PathVariable Long id,
+                             @RequestBody @Valid UpdateCompanyWebsiteRequestDto updateCompanyWebsiteRequestDto) {
+        return jobService.updateCompanyWebsite(id, updateCompanyWebsiteRequestDto);
+    }
+
+    @PutMapping("/{id}/contactEmail")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateContactEmail(@PathVariable Long id,
+                                       @RequestBody @Valid UpdateContactEmailRequestDto updateContactEmailRequestDto) {
+        return jobService.updateContactEmail(id, updateContactEmailRequestDto);
+    }
+
+    @PutMapping("/{id}/kilometers")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateKilometers(@PathVariable Long id,
+                                     @RequestBody @Valid UpdateKilometersRequestDto updateKilometersRequestDto) {
+        return jobService.updateKilometers(id, updateKilometersRequestDto);
+    }
+
+    @PutMapping("/{id}/notes")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateNotes(@PathVariable Long id,
+                                   @RequestBody @Valid UpdateNotesRequestDto updateNotesRequestDto) {
+        return jobService.updateNotes(id, updateNotesRequestDto);
+    }
+
+    @PutMapping("/{id}/tags")
+    @PreAuthorize("hasAuthority('USER')")
+    public JobDto updateTags(@PathVariable Long id,
+                              @RequestBody @Valid UpdateTagsRequestDto updateTagsRequestDto) {
+        return jobService.updateTags(id, updateTagsRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')")
+    public void deleteById(@PathVariable Long id) {
+        jobService.deleteById(id);
+    }
 }
+
