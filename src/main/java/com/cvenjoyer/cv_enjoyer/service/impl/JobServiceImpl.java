@@ -67,6 +67,7 @@ public class JobServiceImpl implements JobService {
 
         jobRepository.findAll().stream()
                 .filter(j -> j.getApplicationDate() != null &&
+                        j.getJobStatus() == Job.JobStatus.APPLIED &&
                         j.getApplicationDate().plusDays(14).isBefore(now))
                 .forEach(j -> {
                     j.setJobStatus(Job.JobStatus.EXPIRED);
