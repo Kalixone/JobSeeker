@@ -67,6 +67,7 @@ public class UserController {
 
     @PutMapping("/update/city")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update User City", description = "Updates the city of the authenticated user.")
     UserDto updateCity(Authentication authentication, @RequestBody UpdateCityRequestDto updateCityRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
@@ -76,6 +77,7 @@ public class UserController {
 
     @DeleteMapping("/reset/frameworks")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Reset User Frameworks", description = "Resets the frameworks list for the authenticated user.")
     UserDto resetFrameworks(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
@@ -85,6 +87,7 @@ public class UserController {
 
     @DeleteMapping("/reset/programmingLanguages")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Reset User Programming Languages", description = "Resets the programming languages list for the authenticated user.")
     UserDto resetProgrammingLanguages(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
@@ -94,6 +97,7 @@ public class UserController {
 
     @DeleteMapping("/reset/experienceLevel")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Reset User Experience Level", description = "Resets the experience level of the authenticated user.")
     UserDto resetExperienceLevel(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");

@@ -93,6 +93,7 @@ public class JobController {
 
     @PutMapping("/{id}/companyName")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update company name", description = "Update the company name for a specific job by its ID.")
     public JobDto updateCompanyName(@PathVariable Long id,
                                   @RequestBody @Valid UpdateCompanyNameRequestDto updateCompanyNameRequestDto) {
         return jobService.updateCompanyName(id, updateCompanyNameRequestDto);
@@ -100,6 +101,7 @@ public class JobController {
 
     @PutMapping("/{id}/position")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Position", description = "Updates the position/title of a specific job based on the provided details.")
     public JobDto updatePostion(@PathVariable Long id,
                                     @RequestBody @Valid UpdatePositionRequestDto updatePositionRequestDto) {
         return jobService.updatePosition(id, updatePositionRequestDto);
@@ -107,6 +109,7 @@ public class JobController {
 
     @PutMapping("/{id}/location")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Location", description = "Updates the location of a specific job.")
     public JobDto updateLocation(Authentication authentication, @PathVariable Long id,
                                 @RequestBody @Valid UpdateLocationRequestDto updateLocationRequestDto) {
         return jobService.updateLocation(authentication, id, updateLocationRequestDto);
@@ -114,6 +117,7 @@ public class JobController {
 
     @PutMapping("/{id}/salary")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Salary", description = "Updates the salary offered for a specific job.")
     public JobDto updateSalary(@PathVariable Long id,
                                  @RequestBody @Valid UpdateSalaryRequestDto updateSalaryRequestDto) {
         return jobService.updateSalary(id, updateSalaryRequestDto);
@@ -121,6 +125,7 @@ public class JobController {
 
     @PutMapping("/{id}/applicationDate")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Application Date", description = "Updates the application deadline for a specific job.")
     public JobDto updateApplicationDate(@PathVariable Long id,
                                @RequestBody @Valid UpdateApplicationDateRequestDto updateApplicationDateRequestDto) {
         return jobService.updateApplicationDate(id, updateApplicationDateRequestDto);
@@ -128,6 +133,7 @@ public class JobController {
 
     @PutMapping("/{id}/jobType")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Type", description = "Updates the job type (e.g., full-time, part-time) for a specific job.")
     public JobDto updateJobType(@PathVariable Long id,
                                         @RequestBody @Valid UpdateJobTypeRequestDto updateJobTypeRequestDto) {
         return jobService.updateJobType(id, updateJobTypeRequestDto);
@@ -135,6 +141,7 @@ public class JobController {
 
     @PutMapping("/{id}/link")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Link", description = "Updates the link to the job posting.")
     public JobDto updateLink(@PathVariable Long id,
                                 @RequestBody @Valid UpdateLinkRequestDto updateLinkRequestDto) {
         return jobService.updateLink(id, updateLinkRequestDto);
@@ -142,6 +149,7 @@ public class JobController {
 
     @PutMapping("/{id}/companyWebsite")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Company Website", description = "Updates the company's website link associated with a specific job.")
     public JobDto updateCompanyWebsite(@PathVariable Long id,
                              @RequestBody @Valid UpdateCompanyWebsiteRequestDto updateCompanyWebsiteRequestDto) {
         return jobService.updateCompanyWebsite(id, updateCompanyWebsiteRequestDto);
@@ -149,6 +157,7 @@ public class JobController {
 
     @PutMapping("/{id}/contactEmail")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Contact Email", description = "Updates the contact email address for a specific job posting.")
     public JobDto updateContactEmail(@PathVariable Long id,
                                        @RequestBody @Valid UpdateContactEmailRequestDto updateContactEmailRequestDto) {
         return jobService.updateContactEmail(id, updateContactEmailRequestDto);
@@ -156,6 +165,7 @@ public class JobController {
 
     @PutMapping("/{id}/kilometers")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Distance", description = "Updates the distance (in kilometers) for a specific job offer.")
     public JobDto updateKilometers(@PathVariable Long id,
                                      @RequestBody @Valid UpdateKilometersRequestDto updateKilometersRequestDto) {
         return jobService.updateKilometers(id, updateKilometersRequestDto);
@@ -163,6 +173,7 @@ public class JobController {
 
     @PutMapping("/{id}/notes")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Notes", description = "Updates the notes section for a specific job offer.")
     public JobDto updateNotes(@PathVariable Long id,
                                    @RequestBody @Valid UpdateNotesRequestDto updateNotesRequestDto) {
         return jobService.updateNotes(id, updateNotesRequestDto);
@@ -170,6 +181,7 @@ public class JobController {
 
     @PutMapping("/{id}/tags")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Tags", description = "Updates the tags associated with a specific job to help with categorization or search.")
     public JobDto updateTags(@PathVariable Long id,
                               @RequestBody @Valid UpdateTagsRequestDto updateTagsRequestDto) {
         return jobService.updateTags(id, updateTagsRequestDto);
@@ -177,6 +189,7 @@ public class JobController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Delete Job Offer", description = "Deletes a specific job offer based on its ID.")
     public void deleteById(@PathVariable Long id) {
         jobService.deleteById(id);
     }
