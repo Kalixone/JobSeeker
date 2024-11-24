@@ -3,7 +3,9 @@ package com.cvenjoyer.cv_enjoyer.service;
 import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.exceptions.RegistrationException;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface UserService {
     UserRegistrationResponseDto register(UserRegistrationRequestDto requestDto) throws RegistrationException;
     UserDto updateFrameworks(Authentication authentication, UserUpdateFrameworksRequestDto userUpdateFrameworksRequestDto);

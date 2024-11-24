@@ -7,7 +7,7 @@ import com.cvenjoyer.cv_enjoyer.model.RemotiveJob;
 import com.cvenjoyer.cv_enjoyer.model.RemotiveJobResponse;
 import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.repository.JobApiRepository;
-import com.cvenjoyer.cv_enjoyer.service.JobFetcher;
+import com.cvenjoyer.cv_enjoyer.service.JobFetcherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class JobFetcherImpl implements JobFetcher {
+public class JobFetcherImpl implements JobFetcherService {
 
     private final JobApiRepository remoteApiJobRepository;
     private final JobMapper jobMapper;

@@ -1,7 +1,7 @@
 package com.cvenjoyer.cv_enjoyer.controller;
 
 import com.cvenjoyer.cv_enjoyer.dto.RemoteApiJobDto;
-import com.cvenjoyer.cv_enjoyer.service.JobFetcher;
+import com.cvenjoyer.cv_enjoyer.service.JobFetcherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.List;
 @Tag(name = "Remote API Job Management", description = "API for managing jobs fetched from external remote job API")
 public class RemoteApiJobController {
 
-    private final JobFetcher jobFetcher;
+    private final JobFetcherService jobFetcher;
 
     @GetMapping
     @PreAuthorize("hasAuthority('USER')")
