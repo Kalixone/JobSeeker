@@ -3,7 +3,6 @@ package com.cvenjoyer.cv_enjoyer.security;
 import com.cvenjoyer.cv_enjoyer.dto.UserLoginRequestDto;
 import com.cvenjoyer.cv_enjoyer.dto.UserLoginResponseDto;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

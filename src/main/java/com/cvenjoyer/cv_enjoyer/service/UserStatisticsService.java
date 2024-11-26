@@ -3,7 +3,6 @@ package com.cvenjoyer.cv_enjoyer.service;
 import com.cvenjoyer.cv_enjoyer.model.Job;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 
 @Service

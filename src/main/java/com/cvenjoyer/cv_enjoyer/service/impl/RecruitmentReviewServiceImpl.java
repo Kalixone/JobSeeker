@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -110,23 +109,18 @@ public class RecruitmentReviewServiceImpl implements RecruitmentReviewService {
 
     @Override
     public RecruitmentReviewDto updateReview(Long id, UpdateReviewRequestDto updateReviewRequestDto, Authentication authentication) {
-        // Wyszukaj recenzję po ID
         RecruitmentReview recruitmentReview = recruitmentReviewRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found by ID: " + id));
 
-        // Pobierz zalogowanego użytkownika
         User principal = (User) authentication.getPrincipal();
 
-        // Sprawdź, czy zalogowany użytkownik jest właścicielem recenzji
         if (!recruitmentReview.getUser().getId().equals(principal.getId())) {
             throw new AccessDeniedException("You do not have permission to update this review");
         }
 
-        // Zaktualizuj recenzję
         recruitmentReview.setReview(updateReviewRequestDto.review());
         recruitmentReviewRepository.save(recruitmentReview);
 
-        // Zwróć zaktualizowaną recenzję
         return recruitmentReviewMapper.toDto(recruitmentReview);
     }
 }

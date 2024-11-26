@@ -1,16 +1,14 @@
 package com.cvenjoyer.cv_enjoyer.dto;
 
 import com.cvenjoyer.cv_enjoyer.model.Job;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
-
 public record JobDto(
         Long id,
         String companyName,
         String position,
         String location,
-        BigDecimal salary,
+        String salary,
         LocalDate applicationDate,
         LocalDate feedBackDate,
         Job.JobStatus jobStatus,

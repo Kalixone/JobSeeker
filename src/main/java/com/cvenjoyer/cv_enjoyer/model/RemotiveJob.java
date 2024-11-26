@@ -23,7 +23,7 @@ public class RemotiveJob {
     private String category;
 
     @JsonProperty("tags")
-    private List<String> frameworks;
+    private List<String> tags;
 
     @JsonProperty("job_type")
     private String jobType;
@@ -33,4 +33,6 @@ public class RemotiveJob {
 
     @JsonProperty("candidate_required_location")
     private String candidateRequiredLocation;
+    @JsonProperty("salary")
+    private String salary;
 }

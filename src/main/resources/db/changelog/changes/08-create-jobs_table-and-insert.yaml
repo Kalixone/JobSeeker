@@ -30,7 +30,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: salary
-                  type: decimal(15,2)
+                  type: varchar(255)
               - column:
                   name: application_date
                   type: date
@@ -88,7 +88,7 @@ databaseChangeLog:
                   value: Mountain View
               - column:
                   name: salary
-                  value: 120000.00
+                  value: "120000.00"
               - column:
                   name: application_date
                   valueDate: "2024-01-01"
@@ -135,7 +135,7 @@ databaseChangeLog:
                   value: Menlo Park
               - column:
                   name: salary
-                  value: 130000.00
+                  value: "130000.00"
               - column:
                   name: application_date
                   valueDate: "2024-02-01"

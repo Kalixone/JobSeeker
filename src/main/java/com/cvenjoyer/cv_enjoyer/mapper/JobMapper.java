@@ -12,4 +12,5 @@ public interface JobMapper {
     Job toModel(CreateJobRequestDto createJobRequestDto);
     JobDto toDto(Job job);
     RemoteApiJobDto toRemoteApiJobDto(JobApi entity);
+    Job toModel(JobApi jobApi);
 }

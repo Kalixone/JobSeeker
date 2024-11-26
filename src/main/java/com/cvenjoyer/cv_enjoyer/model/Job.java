@@ -3,7 +3,6 @@ package com.cvenjoyer.cv_enjoyer.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -18,7 +17,7 @@ public class Job {
     private String companyName;
     private String position;
     private String location;
-    private BigDecimal salary;
+    private String salary;
     private LocalDate applicationDate;
     @Enumerated(EnumType.STRING)
     private JobStatus jobStatus;
@@ -48,5 +47,7 @@ public class Job {
         STATIONARY,
         HYBRID,
         REMOTE,
+        FULL_TIME,
+        CONTRACT
     }
 }

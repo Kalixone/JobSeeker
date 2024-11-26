@@ -1,7 +1,6 @@
 package com.cvenjoyer.cv_enjoyer.dto;
 
 import com.cvenjoyer.cv_enjoyer.model.Role;
-
 import java.util.Set;
 
 public record UserDto(

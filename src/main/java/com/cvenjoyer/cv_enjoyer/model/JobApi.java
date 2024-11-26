@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,18 +15,20 @@ public class JobApi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String position;
     private String companyName;
     private String link;
     private String category;
-
     @ElementCollection
-    @CollectionTable(name = "job_frameworks", joinColumns = @JoinColumn(name = "job_id"))
-    @Column(name = "framework")
-    private List<String> frameworks;
-
-    private String jobType;
+    @CollectionTable(name = "job_tags", joinColumns = @JoinColumn(name = "job_id"))
+    @Column(name = "tags")
+    private Set<String> tags;
+    @Enumerated(EnumType.STRING)
+    private Job.JobType jobType;
     private LocalDate publicationDate;
     private String candidateRequiredLocation;
+    private LocalDate applicationDate;
+    private String location;
+    private String salary;
+
 }

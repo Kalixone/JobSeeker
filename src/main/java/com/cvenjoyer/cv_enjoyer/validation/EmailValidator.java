@@ -2,7 +2,6 @@ package com.cvenjoyer.cv_enjoyer.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
 import java.util.regex.Pattern;
 
 public class EmailValidator implements ConstraintValidator<Email, String> {
