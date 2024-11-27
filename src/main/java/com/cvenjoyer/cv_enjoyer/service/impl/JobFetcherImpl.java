@@ -7,6 +7,7 @@ import com.cvenjoyer.cv_enjoyer.mapper.JobMapper;
 import com.cvenjoyer.cv_enjoyer.model.*;
 import com.cvenjoyer.cv_enjoyer.repository.JobApiRepository;
 import com.cvenjoyer.cv_enjoyer.repository.JobRepository;
+import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
 import com.cvenjoyer.cv_enjoyer.service.JobFetcherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class JobFetcherImpl implements JobFetcherService {
 
     private final JobApiRepository remoteApiJobRepository;
+    private final UserRepository userRepository;
     private final JobRepository jobRepository;
     private final JobMapper jobMapper;
     private final RestTemplate restTemplate;
@@ -98,6 +100,11 @@ public class JobFetcherImpl implements JobFetcherService {
         Job model = jobMapper.toModel(jobApi);
         model.setUser(principal);
         model.setJobStatus(Job.JobStatus.APPLIED);
+        Integer dailyGoal = principal.getDailyGoal();
+        if (dailyGoal != null && dailyGoal > 0) {
+            principal.decrementDailyGoal();
+            userRepository.save(principal);
+        }
         jobRepository.save(model);
         return jobMapper.toDto(model);
     }

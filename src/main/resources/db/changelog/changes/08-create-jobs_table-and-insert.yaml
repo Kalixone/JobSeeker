@@ -69,6 +69,11 @@ databaseChangeLog:
               - column:
                   name: tags
                   type: varchar(255)
+              - column:
+                  name: daily_goal
+                  type: int
+                  constraints:
+                    nullable: true
 
   - changeSet:
       id: 2-insert-jobs
@@ -116,6 +121,9 @@ databaseChangeLog:
               - column:
                   name: tags
                   value: ["engineering", "remote"]
+              - column:
+                  name: daily_goal
+                  value: null
 
   - changeSet:
       id: 3-insert-jobs
@@ -163,3 +171,6 @@ databaseChangeLog:
               - column:
                   name: tags
                   value: ["data", "science", "hybrid"]
+              - column:
+                  name: daily_goal
+                  value: null

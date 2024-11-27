@@ -30,7 +30,7 @@ public class Job {
     private Double kilometers;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "job_tags", joinColumns = @JoinColumn(name = "job_id"))
-    @Column(name = "tag")
+    @Column(name = "tags")
     private Set<String> tags;
     private String notes;
     @ManyToOne(fetch = FetchType.LAZY)

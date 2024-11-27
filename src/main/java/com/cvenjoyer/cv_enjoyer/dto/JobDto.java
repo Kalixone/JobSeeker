@@ -18,6 +18,7 @@ public record JobDto(
         String contactEmail,
         Double kilometers,
         Set<String> tags,
-        String notes
+        String notes,
+        Integer dailyGoal
 ) {
 }

@@ -10,10 +10,12 @@ import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
 import com.cvenjoyer.cv_enjoyer.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -149,6 +151,34 @@ public class UserServiceImpl implements UserService {
         User principal = (User) authentication.getPrincipal();
         Set<String> experienceLevel = principal.getExperienceLevel();
         experienceLevel.clear();
+        userRepository.save(principal);
+        return userMapper.toDto(principal);
+    }
+
+    @Override
+    @Scheduled(cron = "0 52 17 * * *")
+    public void dailyGoalResponse() {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            Integer dailyGoal = user.getDailyGoal();
+
+            if (dailyGoal != null) {
+                if (dailyGoal == 0) {
+                    System.out.println("User " + user.getEmail() + " achieved their goal!");
+                } else if (dailyGoal > 0) {
+                    System.out.println("User " + user.getEmail() + " did not achieve their goal.");
+                }
+            }
+
+            user.setDailyGoal(null);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public UserDto updateDailyGoal(Authentication authentication, UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto) {
+        User principal = (User) authentication.getPrincipal();
+        principal.setDailyGoal(userUpdateDailyGoalRequestDto.dailyGoal());
         userRepository.save(principal);
         return userMapper.toDto(principal);
     }

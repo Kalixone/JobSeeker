@@ -17,4 +17,6 @@ public interface UserService {
     UserDto resetFrameworks(Authentication authentication);
     UserDto resetProgrammingLanguages(Authentication authentication);
     UserDto resetExperienceLevel(Authentication authentication);
+    void dailyGoalResponse();
+    UserDto updateDailyGoal(Authentication authentication, UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto);
 }

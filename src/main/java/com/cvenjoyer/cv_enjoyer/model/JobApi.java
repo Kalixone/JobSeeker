@@ -20,7 +20,7 @@ public class JobApi {
     private String link;
     private String category;
     @ElementCollection
-    @CollectionTable(name = "job_tags", joinColumns = @JoinColumn(name = "job_id"))
+    @CollectionTable(name = "job_tags2", joinColumns = @JoinColumn(name = "job_id"))
     @Column(name = "tags")
     private Set<String> tags;
     @Enumerated(EnumType.STRING)

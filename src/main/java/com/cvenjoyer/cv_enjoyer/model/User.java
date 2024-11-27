@@ -41,6 +41,7 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_experience_levels", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "experience_level")
     private Set<String> experienceLevel;
+    private Integer dailyGoal;
     @ToStringExclude
     private boolean isDeleted;
 
@@ -77,5 +78,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return !isDeleted;
+    }
+
+    public void decrementDailyGoal() {
+        if (dailyGoal != null && dailyGoal > 0) {
+            this.dailyGoal -= 1;
+        }
     }
 }

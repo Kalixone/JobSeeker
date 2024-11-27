@@ -75,6 +75,13 @@ public class UserController {
         return userService.updateCity(authentication, updateCityRequestDto);
     }
 
+    @PutMapping("/update/dailyGoal")
+    @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Daily Goals", description = "Updates daily goals for the authenticated user.")
+    UserDto updateDailyGoal (Authentication authentication, @RequestBody UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto) {
+        return userService.updateDailyGoal(authentication, userUpdateDailyGoalRequestDto);
+    }
+
     @DeleteMapping("/reset/frameworks")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Reset User Frameworks", description = "Resets the frameworks list for the authenticated user.")

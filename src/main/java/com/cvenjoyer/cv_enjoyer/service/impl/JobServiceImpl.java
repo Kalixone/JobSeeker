@@ -8,6 +8,7 @@ import com.cvenjoyer.cv_enjoyer.model.Job;
 import com.cvenjoyer.cv_enjoyer.model.NominatimResponse;
 import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.repository.JobRepository;
+import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JobServiceImpl implements JobService {
     private final JobRepository jobRepository;
+    private final UserRepository userRepository;
     private final JobMapper jobMapper;
     private final RestTemplate restTemplate;
 
@@ -146,7 +148,11 @@ public class JobServiceImpl implements JobService {
             System.err.println("Error occurred while fetching data: " + e.getMessage());
             throw e;
         }
-
+        Integer dailyGoal = authenticatedUser.getDailyGoal();
+        if (dailyGoal != null && dailyGoal > 0) {
+            authenticatedUser.decrementDailyGoal();
+            userRepository.save(authenticatedUser);
+        }
         jobRepository.save(newJob);
         return jobMapper.toDto(newJob);
     }
