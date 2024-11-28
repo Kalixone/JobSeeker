@@ -4,9 +4,11 @@ import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.exceptions.EntityNotFoundException;
 import com.cvenjoyer.cv_enjoyer.exceptions.LocationNotFoundException;
 import com.cvenjoyer.cv_enjoyer.mapper.JobMapper;
+import com.cvenjoyer.cv_enjoyer.model.Badge;
 import com.cvenjoyer.cv_enjoyer.model.Job;
 import com.cvenjoyer.cv_enjoyer.model.NominatimResponse;
 import com.cvenjoyer.cv_enjoyer.model.User;
+import com.cvenjoyer.cv_enjoyer.repository.BadgeRepository;
 import com.cvenjoyer.cv_enjoyer.repository.JobRepository;
 import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
@@ -29,6 +31,7 @@ public class JobServiceImpl implements JobService {
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
     private final JobMapper jobMapper;
+    private final BadgeRepository badgeRepository;
     private final RestTemplate restTemplate;
 
     @Override
@@ -153,6 +156,26 @@ public class JobServiceImpl implements JobService {
             authenticatedUser.decrementDailyGoal();
             userRepository.save(authenticatedUser);
         }
+
+        authenticatedUser.incrementCvSent();
+
+        Set<Badge> badges = authenticatedUser.getBadges();
+
+        if (authenticatedUser.getCvSent() == 10 && !badges.contains(badgeRepository.findByName("CV Blaster"))) {
+            badges.add(badgeRepository.findByName("CV Blaster"));
+        } else if (authenticatedUser.getCvSent() == 25 && badges.size() == 1 && !badges.contains(badgeRepository.findByName("CV Expert"))) {
+            badges.add(badgeRepository.findByName("CV Expert"));
+        } else if (authenticatedUser.getCvSent() == 500 && badges.size() == 2 && !badges.contains(badgeRepository.findByName("CV Master"))) {
+            badges.add(badgeRepository.findByName("CV Master"));
+        } else if (authenticatedUser.getCvSent() == 1000 && badges.size() == 3 && !badges.contains(badgeRepository.findByName("CV Legend"))) {
+            badges.add(badgeRepository.findByName("CV Legend"));
+        } else if (authenticatedUser.getCvSent() == 2500 && badges.size() == 4 && !badges.contains(badgeRepository.findByName("CV Superstar"))) {
+            badges.add(badgeRepository.findByName("CV Superstar"));
+        }
+
+        authenticatedUser.setBadges(badges);
+        userRepository.save(authenticatedUser);
+
         jobRepository.save(newJob);
         return jobMapper.toDto(newJob);
     }
@@ -353,6 +376,24 @@ public class JobServiceImpl implements JobService {
                 System.err.println("Error updating distance for job: " + e.getMessage());
             }
         });
+    }
+
+    @Override
+    public JobDto addFavouriteJob(Long id, Authentication authentication) {
+        User principal = (User) authentication.getPrincipal();
+
+        Job job = jobRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+        principal.getFavourite().add(job);
+        userRepository.save(principal);
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public List<JobDto> findByUserFavouriteJobs(Authentication authentication) {
+        User principal = (User) authentication.getPrincipal();
+        List<Job> favouriteJobs = jobRepository.findByUserFavouriteJobs(principal.getId());
+        return favouriteJobs.stream().map(jobMapper::toDto).collect(Collectors.toList());
     }
 
     @Override

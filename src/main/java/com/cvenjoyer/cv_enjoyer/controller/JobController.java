@@ -193,4 +193,18 @@ public class JobController {
     public void deleteById(@PathVariable Long id) {
         jobService.deleteById(id);
     }
+
+    @GetMapping("/favourite")
+    @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Retrieve all favourite jobs", description = "Fetch a list of favourite jobs.")
+    public List<JobDto> getFavouriteJobs(Authentication authentication) {
+        return jobService.findByUserFavouriteJobs(authentication);
+    }
+
+    @PutMapping("/favourite/{id}")
+    @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Add a job to the user's favourites", description = "Add a job to the authenticated user's list of favourite jobs.")
+    public JobDto addFavouriteJob(@PathVariable Long id, Authentication authentication) {
+        return jobService.addFavouriteJob(id, authentication);
+    }
 }

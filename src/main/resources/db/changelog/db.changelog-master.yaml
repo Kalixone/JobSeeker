@@ -15,3 +15,7 @@ databaseChangeLog:
       file: db/changelog/changes/07-insert-into_user_roles_table.yaml
   - include:
       file: db/changelog/changes/08-create-jobs_table-and-insert.yaml
+  - include:
+      file: db/changelog/changes/09-create-badges_table-and-insert.yaml
+  - include:
+      file: db/changelog/changes/10-create-user-badges_table.yaml

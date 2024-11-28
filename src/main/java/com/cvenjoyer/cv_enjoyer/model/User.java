@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringExclude;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,6 +43,19 @@ public class User implements UserDetails {
     @Column(name = "experience_level")
     private Set<String> experienceLevel;
     private Integer dailyGoal;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_favourite_jobs",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "job_id"))
+    private List<Job> favourite;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_badges",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "badge_id"))
+    private Set<Badge> badges;
+    private int cvSent;
     @ToStringExclude
     private boolean isDeleted;
 
@@ -84,5 +98,8 @@ public class User implements UserDetails {
         if (dailyGoal != null && dailyGoal > 0) {
             this.dailyGoal -= 1;
         }
+    }
+    public void incrementCvSent() {
+        this.cvSent += 1;
     }
 }

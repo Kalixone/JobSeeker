@@ -36,4 +36,6 @@ public interface JobService {
     JobDto updateNotes(Long id, UpdateNotesRequestDto updateNotesRequestDto);
     void deleteById(Long id);
     void updateDistancesForUserJobs(User user);
+    JobDto addFavouriteJob(Long id, Authentication authentication);
+    List<JobDto> findByUserFavouriteJobs(Authentication authentication);
 }

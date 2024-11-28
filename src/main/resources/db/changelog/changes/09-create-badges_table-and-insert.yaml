@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: kalixone
+      changes:
+        - createTable:
+            tableName: badges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 2
+      author: kalixone
+      changes:
+        - insert:
+            tableName: badges
+            columns:
+              - column:
+                  name: name
+                  value: "CV Blaster"
+              - column:
+                  name: description
+                  value: "Send 100 CV"
+        - insert:
+            tableName: badges
+            columns:
+              - column:
+                  name: name
+                  value: "CV Expert"
+              - column:
+                  name: description
+                  value: "Send 250 CV"
+        - insert:
+            tableName: badges
+            columns:
+              - column:
+                  name: name
+                  value: "CV Master"
+              - column:
+                  name: description
+                  value: "Send 500 CV"
+        - insert:
+            tableName: badges
+            columns:
+              - column:
+                  name: name
+                  value: "CV Legend"
+              - column:
+                  name: description
+                  value: "Send 1000 CV"
+        - insert:
+            tableName: badges
+            columns:
+              - column:
+                  name: name
+                  value: "CV Superstar"
+              - column:
+                  name: description
+                  value: "Send 2500 CV"

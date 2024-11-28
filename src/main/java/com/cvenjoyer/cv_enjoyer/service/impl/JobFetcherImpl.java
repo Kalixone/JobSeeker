@@ -5,6 +5,7 @@ import com.cvenjoyer.cv_enjoyer.dto.RemoteApiJobDto;
 import com.cvenjoyer.cv_enjoyer.exceptions.EntityNotFoundException;
 import com.cvenjoyer.cv_enjoyer.mapper.JobMapper;
 import com.cvenjoyer.cv_enjoyer.model.*;
+import com.cvenjoyer.cv_enjoyer.repository.BadgeRepository;
 import com.cvenjoyer.cv_enjoyer.repository.JobApiRepository;
 import com.cvenjoyer.cv_enjoyer.repository.JobRepository;
 import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class JobFetcherImpl implements JobFetcherService {
 
     private final JobApiRepository remoteApiJobRepository;
+    private final BadgeRepository badgeRepository;
     private final UserRepository userRepository;
     private final JobRepository jobRepository;
     private final JobMapper jobMapper;
@@ -105,6 +107,26 @@ public class JobFetcherImpl implements JobFetcherService {
             principal.decrementDailyGoal();
             userRepository.save(principal);
         }
+
+        principal.incrementCvSent();
+
+        Set<Badge> badges = principal.getBadges();
+
+        if (principal.getCvSent() == 100 && !badges.contains(badgeRepository.findByName("CV Blaster"))) {
+            badges.add(badgeRepository.findByName("CV Blaster"));
+        } else if (principal.getCvSent() == 250 && badges.size() == 1 && !badges.contains(badgeRepository.findByName("CV Expert"))) {
+            badges.add(badgeRepository.findByName("CV Expert"));
+        } else if (principal.getCvSent() == 500 && badges.size() == 2 && !badges.contains(badgeRepository.findByName("CV Master"))) {
+            badges.add(badgeRepository.findByName("CV Master"));
+        } else if (principal.getCvSent() == 1000 && badges.size() == 3 && !badges.contains(badgeRepository.findByName("CV Legend"))) {
+            badges.add(badgeRepository.findByName("CV Legend"));
+        } else if (principal.getCvSent() == 2500 && badges.size() == 4 && !badges.contains(badgeRepository.findByName("CV Superstar"))) {
+            badges.add(badgeRepository.findByName("CV Superstar"));
+        }
+
+        principal.setBadges(badges);
+        userRepository.save(principal);
+
         jobRepository.save(model);
         return jobMapper.toDto(model);
     }
