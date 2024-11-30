@@ -36,10 +36,8 @@ public class CvServiceImpl implements CvService {
 
     private File createCvDocx(Map<String, String> fields, String fileName) {
         try {
-            // Tworzymy nowy dokument DOCX
             XWPFDocument document = new XWPFDocument();
 
-            // Imię i nazwisko - wyrównane do lewej, pogrubione
             XWPFParagraph nameParagraph = document.createParagraph();
             nameParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun nameRun = nameParagraph.createRun();
@@ -47,7 +45,6 @@ public class CvServiceImpl implements CvService {
             nameRun.setBold(true);
             nameRun.setFontSize(16);
 
-            // Tytuł zawodowy - wyrównanie do lewej, kursywa
             XWPFParagraph titleParagraph2 = document.createParagraph();
             titleParagraph2.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun titleRun2 = titleParagraph2.createRun();
@@ -55,7 +52,6 @@ public class CvServiceImpl implements CvService {
             titleRun2.setItalic(true);
             titleRun2.setFontSize(14);
 
-            // Sekcja Profile - opis kandydata (akapit z wyrównaniem do lewej)
             XWPFParagraph profileParagraph = document.createParagraph();
             profileParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun profileRun = profileParagraph.createRun();
@@ -65,7 +61,6 @@ public class CvServiceImpl implements CvService {
             XWPFRun profileDescriptionRun = profileParagraph.createRun();
             profileDescriptionRun.setText(fields.get("profileDescription"));
 
-            // Sekcja Education
             XWPFParagraph educationParagraph = document.createParagraph();
             educationParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun educationRun = educationParagraph.createRun();
@@ -75,9 +70,8 @@ public class CvServiceImpl implements CvService {
             XWPFRun educationDetailsRun = educationParagraph.createRun();
             educationDetailsRun.setText(fields.get("education"));
 
-            // Sekcja Skills
             XWPFParagraph skillsParagraph = document.createParagraph();
-            skillsParagraph.setAlignment(ParagraphAlignment.LEFT);  // Teraz wyrównane do lewej
+            skillsParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun skillsRun = skillsParagraph.createRun();
             skillsRun.setText("Skills:");
             skillsRun.setBold(true);
@@ -85,7 +79,6 @@ public class CvServiceImpl implements CvService {
             XWPFRun skillsDetailsRun = skillsParagraph.createRun();
             skillsDetailsRun.setText(fields.get("skills"));
 
-            // Sekcja Experience
             XWPFParagraph experienceParagraph = document.createParagraph();
             experienceParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun experienceRun = experienceParagraph.createRun();
@@ -95,7 +88,6 @@ public class CvServiceImpl implements CvService {
             XWPFRun experienceDetailsRun = experienceParagraph.createRun();
             experienceDetailsRun.setText(fields.get("experience"));
 
-            // Sekcja Contact Information na dole
             XWPFParagraph contactParagraph = document.createParagraph();
             contactParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun contactRun = contactParagraph.createRun();
@@ -114,22 +106,18 @@ public class CvServiceImpl implements CvService {
             XWPFRun githubRun = contactParagraph.createRun();
             githubRun.setText("GitHub: " + fields.get("github"));
 
-            // Ścieżka na pulpicie
             String desktopPath = System.getProperty("user.home") + "/Desktop/GeneratedCVs";
             File folder = new File(desktopPath);
             if (!folder.exists()) {
                 folder.mkdirs();
             }
 
-            // Jeśli fileName jest null lub puste, używamy domyślnej nazwy "cv_generated.docx"
             if (fileName == null || fileName.trim().isEmpty()) {
                 fileName = "cv_generated";
             }
 
-            // Ścieżka do pliku na pulpicie
             File outputFile = new File(folder, fileName + ".docx");
 
-            // Zapisz plik
             try (FileOutputStream out = new FileOutputStream(outputFile)) {
                 document.write(out);
             }

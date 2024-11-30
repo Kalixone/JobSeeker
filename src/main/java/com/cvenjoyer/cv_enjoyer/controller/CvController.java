@@ -2,6 +2,7 @@ package com.cvenjoyer.cv_enjoyer.controller;
 
 import com.cvenjoyer.cv_enjoyer.dto.CreateCvTemplateRequestDto;
 import com.cvenjoyer.cv_enjoyer.service.CvService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,12 @@ public class CvController {
 
     @PostMapping("/generate")
     @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Generate CV", description = "Generates a CV file based on the provided data and returns it as a downloadable file.")
     public ResponseEntity<byte[]> generateCv(@RequestBody CreateCvTemplateRequestDto requestDto) {
         try {
-            // Generowanie pliku CV
             File file = cvService.generateCvFile(requestDto);
             byte[] fileContent = Files.readAllBytes(file.toPath());
 
-            // Przygotowanie nagłówków do pobrania pliku
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=cv.docx");
             headers.add("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
