@@ -1,0 +1,1 @@
+DELETE FROM recruitment_reviews;

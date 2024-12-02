@@ -30,5 +30,4 @@ public class JobApi {
     private LocalDate applicationDate;
     private String location;
     private String salary;
-
 }
