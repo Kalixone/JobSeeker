@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class JobFetcherImpl implements JobFetcherService {
-
     private final JobApiRepository remoteApiJobRepository;
     private final BadgeRepository badgeRepository;
     private final UserRepository userRepository;
