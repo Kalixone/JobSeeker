@@ -20,4 +20,5 @@ public interface JobRepository extends JpaRepository<Job, Long> {
     Long countByUserAndApplicationDateBetween(User user, LocalDate startDate, LocalDate endDate);
     @Query("SELECT j FROM Job j WHERE j IN (SELECT f FROM User u JOIN u.favourite f WHERE u.id = :userId)")
     List<Job> findByUserFavouriteJobs(@Param("userId") Long userId);
+    List<Job> findByInterviewDate(LocalDate interviewDate);
 }

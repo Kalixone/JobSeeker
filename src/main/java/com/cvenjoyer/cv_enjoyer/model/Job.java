@@ -24,6 +24,7 @@ public class Job {
     @Enumerated(EnumType.STRING)
     private JobType jobType;
     private LocalDate feedBackDate;
+    private LocalDate interviewDate;
     private String link;
     private String companyWebsite;
     private String contactEmail;
@@ -33,14 +34,15 @@ public class Job {
     @Column(name = "tags")
     private Set<String> tags;
     private String notes;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public enum JobStatus {
         APPLIED,
         EXPIRED,
-        REJECTED
+        REJECTED,
+        INTERVIEW
     }
 
     public enum JobType {

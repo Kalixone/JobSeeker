@@ -131,6 +131,14 @@ public class JobController {
         return jobService.updateApplicationDate(id, updateApplicationDateRequestDto);
     }
 
+    @PutMapping("/{id}/interviewDate")
+    @PreAuthorize("hasAuthority('USER')")
+    @Operation(summary = "Update Job Interview Date", description = "Updates the Interview Date for a specific job.")
+    public JobDto updateApplicationDate(@PathVariable Long id,
+                                        @RequestBody @Valid UpdateInterviewDateRequestDto updateInterviewDateRequestDto) {
+        return jobService.updateInterviewDate(id, updateInterviewDateRequestDto);
+    }
+
     @PutMapping("/{id}/jobType")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update Job Type", description = "Updates the job type (e.g., full-time, part-time) for a specific job.")

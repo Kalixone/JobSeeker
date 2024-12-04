@@ -3,6 +3,7 @@ package com.cvenjoyer.cv_enjoyer.dto;
 import com.cvenjoyer.cv_enjoyer.model.Job;
 import java.time.LocalDate;
 import java.util.Set;
+
 public record JobDto(
         Long id,
         String companyName,
@@ -11,6 +12,7 @@ public record JobDto(
         String salary,
         LocalDate applicationDate,
         LocalDate feedBackDate,
+        LocalDate interviewDate,
         Job.JobStatus jobStatus,
         Job.JobType jobType,
         String link,

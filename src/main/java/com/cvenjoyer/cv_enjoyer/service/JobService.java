@@ -28,6 +28,7 @@ public interface JobService {
     JobDto updateJobStatus(Long id, UpdateJobStatusRequestDto updateJobStatusRequestDto);
     JobDto updateJobType(Long id, UpdateJobTypeRequestDto updateJobTypeRequestDto);
     JobDto updateFeedBackDate(Long id, UpdateFeedBackDateRequestDto updateFeedBackDateRequestDto);
+    JobDto updateInterviewDate(Long id, UpdateInterviewDateRequestDto updateInterviewDateRequestDto);
     JobDto updateLink(Long id, UpdateLinkRequestDto updateLinkRequestDto);
     JobDto updateCompanyWebsite(Long id, UpdateCompanyWebsiteRequestDto updateCompanyWebsiteRequestDto);
     JobDto updateContactEmail(Long id, UpdateContactEmailRequestDto updateContactEmailRequestDto);
@@ -38,4 +39,5 @@ public interface JobService {
     void updateDistancesForUserJobs(User user);
     JobDto addFavouriteJob(Long id, Authentication authentication);
     List<JobDto> findByUserFavouriteJobs(Authentication authentication);
+    void sendAnEmailForInterview();
 }

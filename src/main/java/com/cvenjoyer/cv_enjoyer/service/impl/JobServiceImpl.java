@@ -11,12 +11,14 @@ import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.repository.BadgeRepository;
 import com.cvenjoyer.cv_enjoyer.repository.JobRepository;
 import com.cvenjoyer.cv_enjoyer.repository.UserRepository;
+import com.cvenjoyer.cv_enjoyer.service.EmailService;
 import com.cvenjoyer.cv_enjoyer.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
@@ -33,6 +35,7 @@ public class JobServiceImpl implements JobService {
     private final JobMapper jobMapper;
     private final BadgeRepository badgeRepository;
     private final RestTemplate restTemplate;
+    private final EmailService emailService;
 
     @Override
     public List<JobDto> getAllJobs(Authentication authentication) {
@@ -52,6 +55,19 @@ public class JobServiceImpl implements JobService {
         if (updateFeedBackDateRequestDto.feedBackDate() != null) {
             job.setFeedBackDate(updateFeedBackDateRequestDto.feedBackDate());
         }
+
+        jobRepository.save(job);
+
+        return jobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto updateInterviewDate(Long id, UpdateInterviewDateRequestDto updateInterviewDateRequestDto) {
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found by ID: " + id));
+
+
+        job.setInterviewDate(updateInterviewDateRequestDto.interviewDate());
 
         jobRepository.save(job);
 
@@ -394,6 +410,22 @@ public class JobServiceImpl implements JobService {
         User principal = (User) authentication.getPrincipal();
         List<Job> favouriteJobs = jobRepository.findByUserFavouriteJobs(principal.getId());
         return favouriteJobs.stream().map(jobMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 19 * * ?")
+    public void sendAnEmailForInterview() {
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        List<Job> jobsWithInterviewTomorrow = jobRepository.findByInterviewDate(tomorrow);
+
+        for (Job job : jobsWithInterviewTomorrow) {
+            String subject = "Interview Reminder";
+            String content = "You have an interview scheduled for: " + job.getInterviewDate() +
+                    " for the position: " + job.getPosition() +
+                    " at the company " + job.getCompanyName() + ".";
+
+            emailService.sendEmail(job.getUser().getEmail(), subject, content, null);
+        }
     }
 
     @Override
