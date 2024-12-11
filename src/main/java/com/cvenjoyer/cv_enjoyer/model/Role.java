@@ -1,13 +1,15 @@
 package com.cvenjoyer.cv_enjoyer.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@EqualsAndHashCode
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id

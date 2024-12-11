@@ -1,6 +1,7 @@
 package com.cvenjoyer.cv_enjoyer.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringExclude;
@@ -10,9 +11,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@EqualsAndHashCode(exclude = {"roles", "badges", "programmingLanguages", "frameworks", "experienceLevel", "favourite"})
 @Table(name = "users")
 public class User implements UserDetails {
     @Id

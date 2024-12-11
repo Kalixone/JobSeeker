@@ -8,6 +8,7 @@ import com.cvenjoyer.cv_enjoyer.exceptions.RegistrationException;
 import com.cvenjoyer.cv_enjoyer.security.AuthenticationService;
 import com.cvenjoyer.cv_enjoyer.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication", description = "Endpoints for user registration and login.")
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;

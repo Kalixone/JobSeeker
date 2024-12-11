@@ -1,6 +1,5 @@
 package com.cvenjoyer.cv_enjoyer.service.impl;
 
-
 import com.cvenjoyer.cv_enjoyer.dto.CreateRecruitmentReviewRequestDto;
 import com.cvenjoyer.cv_enjoyer.dto.RecruitmentReviewDto;
 import com.cvenjoyer.cv_enjoyer.dto.UpdateReviewRequestDto;
@@ -19,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class RecruitmentReviewServiceImpl implements RecruitmentReviewService {
     private final RecruitmentReviewRepository recruitmentReviewRepository;
     private final RecruitmentReviewMapper recruitmentReviewMapper;

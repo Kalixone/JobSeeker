@@ -3,6 +3,7 @@ package com.cvenjoyer.cv_enjoyer.controller;
 import com.cvenjoyer.cv_enjoyer.dto.DevToDto;
 import com.cvenjoyer.cv_enjoyer.service.ArticleService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/articles")
+@Tag(name = "Article Management", description = "Endpoints for fetching and searching articles.")
 public class ArticleController {
     private final ArticleService articleService;
 

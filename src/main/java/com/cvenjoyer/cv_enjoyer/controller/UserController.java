@@ -4,6 +4,7 @@ import com.cvenjoyer.cv_enjoyer.dto.*;
 import com.cvenjoyer.cv_enjoyer.exceptions.AuthenticationException;
 import com.cvenjoyer.cv_enjoyer.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/user")
+@Tag(name = "User Management", description = "Endpoints for managing user profiles, skills, and preferences.")
 public class UserController {
     private final UserService userService;
 

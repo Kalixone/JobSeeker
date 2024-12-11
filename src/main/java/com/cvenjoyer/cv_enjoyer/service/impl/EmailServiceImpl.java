@@ -36,14 +36,13 @@ public class EmailServiceImpl implements EmailService {
 
             mailSender.send(message);
 
-            // Zapisanie e-maila w bazie danych
             Email email = new Email();
             email.setSender("your-email@example.com");
             email.setRecipient(to);
             email.setSubject(subject);
             email.setContent(text);
             email.setSentAt(LocalDateTime.now());
-            email.setUser(authentication != null ? (User) authentication.getPrincipal() : null);  // W przypadku braku autentykacji (np. zadanie) ustawiamy jako null
+            email.setUser(authentication != null ? (User) authentication.getPrincipal() : null);
 
             emailSenderRepository.save(email);
             return emailMapper.toDto(email);

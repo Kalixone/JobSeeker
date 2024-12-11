@@ -3,6 +3,7 @@ package com.cvenjoyer.cv_enjoyer.controller;
 import com.cvenjoyer.cv_enjoyer.model.Job;
 import com.cvenjoyer.cv_enjoyer.service.UserStatisticsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/statistics")
+@Tag(name = "User Statistics", description = "Endpoints for retrieving statistics about user job applications and preferences.")
 public class UserStatisticsController {
     private final UserStatisticsService userStatisticsService;
 

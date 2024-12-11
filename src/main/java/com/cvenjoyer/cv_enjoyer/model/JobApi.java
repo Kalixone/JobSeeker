@@ -1,6 +1,7 @@
 package com.cvenjoyer.cv_enjoyer.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
@@ -9,12 +10,13 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode
 @Table(name = "job_api_jobs")
 public class JobApi {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "job_position")
     private String position;
     private String companyName;
     private String link;

@@ -3,6 +3,7 @@ package com.cvenjoyer.cv_enjoyer.controller;
 import com.cvenjoyer.cv_enjoyer.dto.CreateCvTemplateRequestDto;
 import com.cvenjoyer.cv_enjoyer.service.CvService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.nio.file.Files;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/cv")
+@Tag(name = "CV Management", description = "Endpoints for generating CVs.")
 public class CvController {
     private final CvService cvService;
 

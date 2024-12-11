@@ -1,12 +1,14 @@
 package com.cvenjoyer.cv_enjoyer.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@EqualsAndHashCode
 @Table(name = "user_statistics")
 public class UserStatistics {
     @Id

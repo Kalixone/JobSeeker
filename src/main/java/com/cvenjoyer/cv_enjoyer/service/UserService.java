@@ -19,5 +19,4 @@ public interface UserService {
     UserDto resetExperienceLevel(Authentication authentication);
     void dailyGoalResponse();
     UserDto updateDailyGoal(Authentication authentication, UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto);
-
 }

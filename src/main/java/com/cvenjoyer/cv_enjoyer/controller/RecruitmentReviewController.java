@@ -6,6 +6,7 @@ import com.cvenjoyer.cv_enjoyer.dto.UpdateReviewRequestDto;
 import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.service.RecruitmentReviewService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reviews")
 @RequiredArgsConstructor
+@Tag(name = "Recruitment Reviews", description = "Endpoints for managing recruitment reviews, including creation, searching, and updating.")
 public class RecruitmentReviewController {
     private final RecruitmentReviewService recruitmentReviewService;
 

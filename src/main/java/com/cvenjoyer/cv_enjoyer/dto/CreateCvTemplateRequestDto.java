@@ -12,4 +12,5 @@ public record CreateCvTemplateRequestDto(
         String skills,
         String experience,
         String fileName
-) {}
+) {
+}

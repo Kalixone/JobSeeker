@@ -1,7 +1,9 @@
 package com.cvenjoyer.cv_enjoyer.config;
 
 import com.cvenjoyer.cv_enjoyer.security.JwtAuthenticationFilter;
+import com.cvenjoyer.cv_enjoyer.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +28,8 @@ import org.springframework.web.client.RestTemplate;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
