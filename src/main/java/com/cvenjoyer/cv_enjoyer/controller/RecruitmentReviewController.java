@@ -7,6 +7,7 @@ import com.cvenjoyer.cv_enjoyer.model.User;
 import com.cvenjoyer.cv_enjoyer.service.RecruitmentReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -23,7 +24,7 @@ public class RecruitmentReviewController {
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Create recruitment review", description = "Create a recruitment review for a specific company based on the user's experience.")
-    public RecruitmentReviewDto createReview(@RequestBody CreateRecruitmentReviewRequestDto createRecruitmentReviewRequestDto, Authentication authentication) {
+    public RecruitmentReviewDto createReview(@RequestBody @Valid CreateRecruitmentReviewRequestDto createRecruitmentReviewRequestDto, Authentication authentication) {
        return recruitmentReviewService.createReview(createRecruitmentReviewRequestDto, authentication);
     }
 
@@ -94,7 +95,7 @@ public class RecruitmentReviewController {
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update Review", description = "Allows a user to update a specific recruitment review.")
-    public RecruitmentReviewDto updateReview(@PathVariable Long id, @RequestBody UpdateReviewRequestDto updateReviewRequestDto, Authentication authentication) {
+    public RecruitmentReviewDto updateReview(@PathVariable Long id, @RequestBody @Valid UpdateReviewRequestDto updateReviewRequestDto, Authentication authentication) {
         return recruitmentReviewService.updateReview(id, updateReviewRequestDto, authentication);
     }
 }

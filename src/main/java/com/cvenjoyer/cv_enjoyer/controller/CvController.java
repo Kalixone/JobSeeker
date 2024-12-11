@@ -4,6 +4,7 @@ import com.cvenjoyer.cv_enjoyer.dto.CreateCvTemplateRequestDto;
 import com.cvenjoyer.cv_enjoyer.service.CvService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CvController {
     @PostMapping("/generate")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Generate CV", description = "Generates a CV file based on the provided data and returns it as a downloadable file.")
-    public ResponseEntity<byte[]> generateCv(@RequestBody CreateCvTemplateRequestDto requestDto) {
+    public ResponseEntity<byte[]> generateCv(@RequestBody @Valid CreateCvTemplateRequestDto requestDto) {
         try {
             File file = cvService.generateCvFile(requestDto);
             byte[] fileContent = Files.readAllBytes(file.toPath());

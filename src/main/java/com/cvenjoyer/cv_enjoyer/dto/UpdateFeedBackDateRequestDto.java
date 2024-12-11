@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record UpdateFeedBackDateRequestDto(
-        @NotNull(message = "Feedback date is required")
+        @NotNull
         LocalDate feedBackDate
 ) {
 }

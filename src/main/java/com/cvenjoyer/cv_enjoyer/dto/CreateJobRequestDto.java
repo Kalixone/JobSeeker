@@ -8,17 +8,17 @@ import java.time.LocalDate;
 import java.util.Set;
 
 public record CreateJobRequestDto(
-        @NotBlank(message = "Company name is required")
+        @NotBlank
         String companyName,
-        @NotBlank(message = "Position is required")
+        @NotBlank
         String position,
-        @NotBlank(message = "Location is required")
+        @NotBlank
         String location,
         BigDecimal salary,
-        @NotNull(message = "Application date is required")
+        @NotNull
         LocalDate applicationDate,
         Job.JobType jobType,
-        @NotBlank(message = "Link is required")
+        @NotBlank
         String link,
         String companyWebsite,
         String contactEmail,

@@ -5,6 +5,7 @@ import com.cvenjoyer.cv_enjoyer.exceptions.AuthenticationException;
 import com.cvenjoyer.cv_enjoyer.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ public class UserController {
     @PutMapping("/update/frameworks")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user frameworks", description = "Update the frameworks of the authenticated user.")
-    UserDto updateFrameworks(Authentication authentication, @RequestBody UserUpdateFrameworksRequestDto userUpdateFrameworksRequestDto) {
+    UserDto updateFrameworks(Authentication authentication, @RequestBody @Valid UserUpdateFrameworksRequestDto userUpdateFrameworksRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
         }
@@ -30,7 +31,7 @@ public class UserController {
     @PutMapping("/update/english-level")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user English level", description = "Update the English language proficiency level of the authenticated user.")
-    UserDto updateEnglishLevel(Authentication authentication, @RequestBody UserUpdateEnglishLevelRequestDto userUpdateEnglishLevelRequestDto) {
+    UserDto updateEnglishLevel(Authentication authentication, @RequestBody @Valid UserUpdateEnglishLevelRequestDto userUpdateEnglishLevelRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
         }
@@ -40,7 +41,7 @@ public class UserController {
     @PutMapping("/update/programming-language")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user programming languages", description = "Update the programming languages of the authenticated user.")
-    UserDto updateProgrammingLanguage(Authentication authentication, @RequestBody UserUpdateProgrammingLanguageRequestDto userUpdateProgrammingLanguageRequestDto) {
+    UserDto updateProgrammingLanguage(Authentication authentication, @RequestBody @Valid UserUpdateProgrammingLanguageRequestDto userUpdateProgrammingLanguageRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
         }
@@ -50,7 +51,7 @@ public class UserController {
     @PutMapping("/update/experience-level")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user experience level", description = "Update the experience level of the authenticated user.")
-    UserDto updateExperienceLevel(Authentication authentication, @RequestBody UserUpdateExperienceLevelRequestDto userUpdateExperienceLevelRequestDto) {
+    UserDto updateExperienceLevel(Authentication authentication, @RequestBody @Valid UserUpdateExperienceLevelRequestDto userUpdateExperienceLevelRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
         }
@@ -70,7 +71,7 @@ public class UserController {
     @PutMapping("/update/city")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update User City", description = "Updates the city of the authenticated user.")
-    UserDto updateCity(Authentication authentication, @RequestBody UpdateCityRequestDto updateCityRequestDto) {
+    UserDto updateCity(Authentication authentication, @RequestBody @Valid UpdateCityRequestDto updateCityRequestDto) {
         if (authentication == null || !authentication.isAuthenticated()) {
             throw new AuthenticationException("User is not authenticated");
         }
@@ -80,7 +81,7 @@ public class UserController {
     @PutMapping("/update/dailyGoal")
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update Daily Goals", description = "Updates daily goals for the authenticated user.")
-    UserDto updateDailyGoal (Authentication authentication, @RequestBody UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto) {
+    UserDto updateDailyGoal (Authentication authentication, @RequestBody @Valid UserUpdateDailyGoalRequestDto userUpdateDailyGoalRequestDto) {
         return userService.updateDailyGoal(authentication, userUpdateDailyGoalRequestDto);
     }
 
