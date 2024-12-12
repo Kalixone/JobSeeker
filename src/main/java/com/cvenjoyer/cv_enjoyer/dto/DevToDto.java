@@ -1,5 +1,4 @@
 package com.cvenjoyer.cv_enjoyer.dto;
-
 public record DevToDto(
         Long id,
         String title,

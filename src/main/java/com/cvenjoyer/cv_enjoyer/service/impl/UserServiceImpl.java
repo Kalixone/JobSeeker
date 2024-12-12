@@ -156,7 +156,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Scheduled(cron = "0 52 17 * * *")
+    @Scheduled(cron = "0 59 23 * * *")
     public void dailyGoalResponse() {
         List<User> users = userRepository.findAll();
         for (User user : users) {

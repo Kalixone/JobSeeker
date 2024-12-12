@@ -22,9 +22,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user frameworks", description = "Update the frameworks of the authenticated user.")
     UserDto updateFrameworks(Authentication authentication, @RequestBody @Valid UserUpdateFrameworksRequestDto userUpdateFrameworksRequestDto) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.updateFrameworks(authentication, userUpdateFrameworksRequestDto);
     }
 
@@ -32,9 +29,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user English level", description = "Update the English language proficiency level of the authenticated user.")
     UserDto updateEnglishLevel(Authentication authentication, @RequestBody @Valid UserUpdateEnglishLevelRequestDto userUpdateEnglishLevelRequestDto) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.updateEnglishLevel(authentication, userUpdateEnglishLevelRequestDto);
     }
 
@@ -42,9 +36,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user programming languages", description = "Update the programming languages of the authenticated user.")
     UserDto updateProgrammingLanguage(Authentication authentication, @RequestBody @Valid UserUpdateProgrammingLanguageRequestDto userUpdateProgrammingLanguageRequestDto) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.updateProgrammingLanguages(authentication, userUpdateProgrammingLanguageRequestDto);
     }
 
@@ -52,9 +43,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update user experience level", description = "Update the experience level of the authenticated user.")
     UserDto updateExperienceLevel(Authentication authentication, @RequestBody @Valid UserUpdateExperienceLevelRequestDto userUpdateExperienceLevelRequestDto) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.updateExperienceLevel(authentication, userUpdateExperienceLevelRequestDto);
     }
 
@@ -62,9 +50,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Get user profile info", description = "Fetch the profile information of the authenticated user.")
     UserDto myProfileInfo(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.myProfileInfo(authentication);
     }
 
@@ -72,9 +57,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Update User City", description = "Updates the city of the authenticated user.")
     UserDto updateCity(Authentication authentication, @RequestBody @Valid UpdateCityRequestDto updateCityRequestDto) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.updateCity(authentication, updateCityRequestDto);
     }
 
@@ -89,9 +71,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Reset User Frameworks", description = "Resets the frameworks list for the authenticated user.")
     UserDto resetFrameworks(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.resetFrameworks(authentication);
     }
 
@@ -99,9 +78,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Reset User Programming Languages", description = "Resets the programming languages list for the authenticated user.")
     UserDto resetProgrammingLanguages(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.resetProgrammingLanguages(authentication);
     }
 
@@ -109,9 +85,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER')")
     @Operation(summary = "Reset User Experience Level", description = "Resets the experience level of the authenticated user.")
     UserDto resetExperienceLevel(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new AuthenticationException("User is not authenticated");
-        }
         return userService.resetExperienceLevel(authentication);
     }
 }

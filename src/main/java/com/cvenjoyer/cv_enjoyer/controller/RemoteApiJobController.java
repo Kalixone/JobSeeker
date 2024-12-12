@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/api/remote-api-jobs")
 @Tag(name = "Remote API Job Management", description = "API for managing jobs fetched from external remote job API")
 public class RemoteApiJobController {
-
     private final JobFetcherService jobFetcher;
 
     @GetMapping("/remotive")

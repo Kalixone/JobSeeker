@@ -79,7 +79,7 @@ public class JobServiceImpl implements JobService {
                 () -> new EntityNotFoundException("Entity not found by ID: " + id));
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 59 23 * * *")
     @Override
     public void checkAndExpireOldApplications() {
         LocalDate now = LocalDate.now();

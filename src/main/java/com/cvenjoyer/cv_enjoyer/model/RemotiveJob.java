@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 public class RemotiveJob {
-
     @JsonProperty("title")
     private String position;
 

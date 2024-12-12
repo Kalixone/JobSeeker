@@ -13,6 +13,5 @@ public record UserDto(
         Set<String> frameworks,
         Set<String> programmingLanguages,
         Set<String> experienceLevel
-
 ) {
 }

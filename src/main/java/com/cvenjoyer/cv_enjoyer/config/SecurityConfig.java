@@ -28,8 +28,6 @@ import org.springframework.web.client.RestTemplate;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    @Value("${jwt.secret}")
-    private String jwtSecret;
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -48,7 +46,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("api/auth/**","/swagger-ui/**", "/v3/api-docs/**", "api/**")
+                                .requestMatchers("api/auth/**", "/swagger-ui/**", "/v3/api-docs/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
