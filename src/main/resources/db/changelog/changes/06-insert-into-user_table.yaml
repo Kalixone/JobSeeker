@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: email
-                  value: user1@example.com
+                  value: user@example.com
               - column:
                   name: first_name
                   value: John
@@ -35,7 +35,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: email
-                  value: admin1@example.com
+                  value: admin@example.com
               - column:
                   name: first_name
                   value: Admin
