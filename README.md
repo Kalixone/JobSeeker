@@ -115,7 +115,7 @@ Include the Bearer token in the Authorization header of your requests to access 
 
 ---
 
-📚 Project Structure
+## 📊 Project Structure
 
 **Controllers**
 - **AuthenticationController:** Handles user login, registration, and authentication requests.
@@ -128,7 +128,7 @@ Include the Bearer token in the Authorization header of your requests to access 
 - **UserStatisticsController:** Provides user statistics, including activity tracking and engagement metrics.
 
 **DTOs (Data Transfer Objects)**
-- DTOs, such as CvDto, EmailDto, JobDto, UserDto, RecruitmentReviewDto, UserStatisticsDto, LocationDto, UpdateDtos – Used for transferring data between controllers and services, handling CV, email, job, user, recruitment review, user statistics, location, and entity updates. There are more DTOs, these are just examples.
+- **DTOs, such as:** CvDto, EmailDto, JobDto, UserDto, RecruitmentReviewDto, UserStatisticsDto, LocationDto, UpdateDtos – Used for transferring data between controllers and services, handling CV, email, job, user, recruitment review, user statistics, location, and entity updates. There are more DTOs, these are just examples.
 
 **Mappers**
 - **CvMapper:** Maps CV-related DTOs to entities and vice versa.
