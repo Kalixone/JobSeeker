@@ -114,3 +114,93 @@ Access Standard User Features:
 Include the Bearer token in the Authorization header of your requests to access standard user features.
 
 ---
+
+📚 Project Structure
+
+**Controllers**
+- **AuthenticationController:** Handles user login, registration, and authentication requests.
+- **CvController:** Manages CV upload, update, and retrieval.
+- **EmailController:** Handles email sending, updates, and other email-related operations.
+- **JobController:** Oversees job listings, updates, and job-related operations.
+- **RecruitmentReviewController:** Manages the recruitment review process, including adding, updating, and reviewing recruitment statuses.
+- **RemoteApiJobController:** Handles integration with remote job APIs, fetching job listings, and synchronizing them.
+- **UserController:** Manages user-related operations, such as profile management, role updates, and permissions.
+- **UserStatisticsController:** Provides user statistics, including activity tracking and engagement metrics.
+
+**DTOs (Data Transfer Objects)**
+- DTOs, such as CvDto, EmailDto, JobDto, UserDto, RecruitmentReviewDto, UserStatisticsDto, LocationDto, UpdateDtos – Used for transferring data between controllers and services, handling CV, email, job, user, recruitment review, user statistics, location, and entity updates. There are more DTOs, these are just examples.
+
+**Mappers**
+- **CvMapper:** Maps CV-related DTOs to entities and vice versa.
+- **EmailMapper:** Converts email-related DTOs to entities and vice versa.
+- **JobMapper:** Maps job-related DTOs to entities and vice versa.
+- **RecruitmentReviewMapper:** Maps recruitment review DTOs to entities.
+- **UserMapper:** Converts user DTOs to entities and vice versa.
+- **UserStatisticsMapper:** Maps user statistics DTOs.
+- **LocationMapper:** For mapping location data to entities and DTOs.
+
+**Services**
+- **AuthenticationService:** Handles login, registration, and authentication logic.
+- **CvService:** Manages operations related to CV handling.
+- **EmailService:** Manages sending and receiving emails.
+- **JobService:** Handles job-related business logic, including creating, updating, and retrieving job listings.
+- **JobFetcherService:** Fetches jobs from remote APIs and synchronizes with the local database.
+- **RecruitmentReviewService:** Manages recruitment review operations, including reviewing applicants and updating statuses.
+- **UserService:** Handles user operations such as profile updates, password management, and user status.
+- **UserStatisticsService:** Provides business logic for calculating and retrieving user statistics.
+- **ValidationService:** Manages validation logic for various entities, such as email validation, user input validation, etc.
+
+**Repositories**
+- **BadgeRepository:** Handles badge-related database operations.
+- **CvRepository:** Manages CV data persistence.
+- **EmailRepository:** Stores and retrieves email-related data.
+- **JobApiRepository:** For storing and managing jobs fetched from external APIs.
+- **JobRepository:** Handles CRUD operations for job listings.
+- **RecruitmentReviewRepository:** Manages recruitment reviews data persistence.
+- **RoleRepository:** Handles role-related data persistence.
+- **UserRepository:** Manages user-related data persistence.
+- **UserStatisticsRepository:** Stores and retrieves user statistics.
+
+**Exceptions**
+- **AuthenticationException:** Handles errors related to authentication failures.
+- **EntityNotFoundException:** Used when an entity (like a user, job, or CV) is not found.
+- **LocationNotFoundException:** Thrown when a location is not found.
+- **RegistrationException:** Used for errors during user registration.
+- **CustomErrorResponse:** Standard error response format.
+- **CustomGlobalExceptionHandler:** A global exception handler to catch and manage all application-level exceptions.
+
+**Security**
+- **AuthenticationController:** Manages user login and registration processes.
+- **CustomUserDetailsService:** A custom service for loading user details for authentication.
+- **JwtAuthenticationFilter:** Filter for handling JWT-based authentication.
+- **JwtUtil:** Utility for generating and validating JWT tokens.
+- **SecurityConfig:** Configuration for Spring Security, including security policies and authentication mechanisms.
+
+**Configuration**
+- **application.properties:** Main application configuration file with database, server settings, etc.
+- **liquibase.properties:** Configuration file for managing database changes.
+- **liquibase.changelog:** Liquibase change log file containing database schema updates and migration scripts.
+- **Dockerfile:** Defines the steps to build the Docker container for the application.
+- **docker-compose.yml:** Docker Compose configuration file for managing multi-container setups (e.g., app + database).
+
+**Models**
+- **Badge:** Entity for user badges.
+- **Cv:** Entity for storing CVs.
+- **Email:** Entity for storing email details.
+- **Job:** Entity representing a job listing.
+- **JobApi:** Entity for jobs fetched from remote APIs.
+- **RecruitmentReview:** Entity for recruitment review data.
+- **Role:** Entity for user roles.
+- **User:** Entity for users in the system.
+- **UserStatistics:** Entity for storing user activity and engagement statistics.
+- **Location:** Entity for managing user or job location data.
+
+**Validation**
+- **EmailValidator:** Validates email formats.
+
+**Infrastructure**
+- **Docker Configuration:** Dockerfile, docker-compose.yml for running the application in Docker containers.
+- **Liquibase Change Logs:** Contains scripts for updating and initializing the database.
+
+**Swagger Documentation**
+- **API documentation using Swagger for all controllers, providing API endpoints and descriptions.**
