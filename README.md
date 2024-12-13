@@ -205,20 +205,26 @@ Include the Bearer token in the Authorization header of your requests to access 
 **Swagger Documentation**
 - **API documentation using Swagger for all controllers, providing API endpoints and descriptions.**
 
+---
+
 ## ⭐ Features Overview
 
 ### Authentication Management Endpoints
 #### Available for Everybody:
 
 🌐 POST: /api/auth/registration - registers a new user.
+
 🌐 POST: /api/auth/login - sign in for an existing user.
 
 ### Article Management Endpoints
 #### User Available:
 
 👤 GET: /api/articles - fetches all articles available for the authenticated user.
+
 👤 GET: /api/articles/byKeyword?word={keyword} - fetches articles by a specific keyword.
+
 👤 GET: /api/articles/byTitle?title={title} - fetches articles by title.
+
 👤 GET: /api/articles/byDescription?description={description} - fetches articles by description.
 
 ### CV Management Endpoints
@@ -230,87 +236,146 @@ Include the Bearer token in the Authorization header of your requests to access 
 #### User Available:
 
 👤 POST: /email/send-email - allows an authenticated user to send an email by providing recipient, subject, and text.
+
 👤 GET: /email - retrieves all emails associated with the authenticated user.
+
 👤 GET: /email/search-by-recipient?recipient={recipient} - searches emails sent by the authenticated user where the recipient contains the specified string.
+
 👤 GET: /email/search-by-date?startDate={startDate}&endDate={endDate} - searches emails sent by the authenticated user within the specified date range.
 
 ### Job Management Endpoints
 #### User Available:
 
 👤 POST: /api/jobs - create a new job with all necessary details.
+
 👤 GET: /api/jobs - retrieve all available jobs.
+
 👤 GET: /api/jobs/{id} - fetch job details by ID.
+
 👤 PUT: /api/jobs/{id}/feedback - update feedback date for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/status - update the job status for a specific job by its ID.
+
 👤 GET: /api/jobs/filtr - fetch a list of jobs sorted by salary in ascending order.
+
 👤 GET: /api/jobs/applied - fetch jobs with the status 'APPLIED'.
+
 👤 GET: /api/jobs/rejected - fetch jobs with the status 'REJECTED'.
+
 👤 GET: /api/jobs/expired - fetch jobs with the status 'EXPIRED'.
+
 👤 GET: /api/jobs/findByKilometers?from={from}&to={to} - find jobs within the specified kilometers range.
+
 👤 PUT: /api/jobs/{id}/companyName - update the company name for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/position - update the position/title for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/location - update the location for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/salary - update the salary for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/applicationDate - update the application date for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/interviewDate - update the interview date for a specific job by its ID.
+
 👤 PUT: /api/jobs/{id}/jobType - update the job type (e.g., full-time, part-time) for a specific job.
+
 👤 PUT: /api/jobs/{id}/link - update the link to the job posting.
+
 👤 PUT: /api/jobs/{id}/companyWebsite - update the company website link for a specific job.
+
 👤 PUT: /api/jobs/{id}/contactEmail - update the contact email for a specific job.
+
 👤 PUT: /api/jobs/{id}/kilometers - update the distance for a specific job offer.
+
 👤 PUT: /api/jobs/{id}/notes - update the notes for a specific job.
+
 👤 PUT: /api/jobs/{id}/tags - update the tags associated with a specific job.
+
 👤 DELETE: /api/jobs/{id} - delete a specific job offer by its ID.
+
 👤 GET: /api/jobs/favourite - retrieve all the favourite jobs of the authenticated user.
+
 👤 PUT: /api/jobs/favourite/{id} - add a specific job to the authenticated user's favourite list.
 
 ### Recruitment Review Management Endpoints
 #### User Available:
 
 👤 POST: /api/reviews/create - create a recruitment review for a company based on the user's experience.
+
 👤 GET: /api/reviews/all - fetch a list of all recruitment reviews.
+
 👤 GET: /api/reviews/users - fetch a list of all recruitment reviews created by the authenticated user.
+
 👤 DELETE: /api/reviews/{id} - delete a recruitment review based on its ID.
+
 👤 GET: /api/reviews/search - search recruitment reviews by company name.
+
 👤 GET: /api/reviews/searchForUser - search reviews left by a user for a specific company.
+
 👤 GET: /api/reviews/searchByRating - search reviews by rating.
+
 👤 GET: /api/reviews/searchByRatingForUser - search user reviews by rating.
+
 👤 GET: /api/reviews/searchByStages - search reviews by recruitment stage.
+
 👤 GET: /api/reviews/searchByStagesForUser - search user reviews by recruitment stage.
+
 👤 PUT: /api/reviews/update/{id} - update a specific recruitment review.
 
 ### Remote API Job Management Endpoints
 #### User Available:
 
 👤 GET: /api/remote-api-jobs/remotive - fetch a list of all jobs saved from the Remotive API.
+
 👤 GET: /api/remote-api-jobs/apply/{id} - apply for a job by its ID.
+
 👤 GET: /api/remote-api-jobs/search/company - search jobs by company name.
+
 👤 GET: /api/remote-api-jobs/search/position - search jobs by position.
+
 👤 GET: /api/remote-api-jobs/search/tags - search jobs by tags (e.g., frameworks, technologies).
+
 👤 GET: /api/remote-api-jobs/search/jobType - search jobs by job type (e.g., full-time, contract, remote).
+
 👤 GET: /api/remote-api-jobs/search/applicationDate - search jobs by application date range.
+
 👤 GET: /api/remote-api-jobs/search/location - search jobs based on candidate required location.
 
 ### User Management Endpoints
 #### User Available:
 
 👤 PUT: /api/user/update/frameworks - update the frameworks of the authenticated user.
+
 👤 PUT: /api/user/update/english-level - update the English language proficiency level of the authenticated user.
+
 👤 PUT: /api/user/update/programming-language - update the programming languages of the authenticated user.
+
 👤 PUT: /api/user/update/experience-level - update the experience level of the authenticated user.
+
 👤 GET: /api/user/profile/info - fetch the profile information of the authenticated user.
+
 👤 PUT: /api/user/update/city - updates the city of the authenticated user.
+
 👤 PUT: /api/user/update/dailyGoal - updates daily goals for the authenticated user.
+
 👤 DELETE: /api/user/reset/frameworks - resets the frameworks list for the authenticated user.
+
 👤 DELETE: /api/user/reset/programmingLanguages - resets the programming languages list for the authenticated user.
+
 👤 DELETE: /api/user/reset/experienceLevel - resets the experience level of the authenticated user.
 
 ### User Statistics Endpoints
 #### User Available:
 
 👤 GET: /api/statistics/total-applications - gets the total number of applications made by the authenticated user.
+
 👤 GET: /api/statistics/total-expired - gets the total number of expired job listings for the authenticated user.
+
 👤 GET: /api/statistics/total-rejected - gets the total number of rejected job listings for the authenticated user.
+
 👤 GET: /api/statistics/total-applied - gets the total number of jobs that the authenticated user has applied to.
+
 👤 GET: /api/statistics/preferred-jobType - gets the preferred job type for the authenticated user.
+
 👤 GET: /api/statistics/count-applications-in-date-range - gets the total number of applications made by the authenticated user within a specific date range.
