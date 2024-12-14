@@ -1,4 +1,4 @@
-# 🧳 Overview of JobSeeker API
+# 💼 Overview of JobSeeker API
 
 Welcome to the documentation for the **JobSeeker Project**, a Java Spring-based RESTful API developed to streamline job application management and empower job seekers with essential tools and resources.
 
@@ -379,3 +379,49 @@ Include the Bearer token in the Authorization header of your requests to access 
 👤 GET: /api/statistics/preferred-jobType - gets the preferred job type for the authenticated user.
 
 👤 GET: /api/statistics/count-applications-in-date-range - gets the total number of applications made by the authenticated user within a specific date range.
+
+---
+
+## 📸 Screenshots
+Below you will find screenshots illustrating the functionalities of selected modules of the application. These are just a few examples—please refer to the full application details for a complete overview.
+
+### User Registration:
+![User Registration](https://i.imgur.com/u2C17NL.png)
+*Screenshot showing the user registration process.*
+
+### User Login:
+![User Login](https://i.imgur.com/eeYkVb8.png)
+*Screenshot showing the user login process.*
+
+### Job Offer Creation:
+![Job Offer Creation](https://i.imgur.com/DEdOEy7.png)
+*Screenshot showing the creation of a job offer.*
+
+### User Information View:
+![User Information View](https://i.imgur.com/5OCTL7i.png)
+*Screenshot showing the details of the logged-in user.*
+
+### Recruitment Review Creation:
+![Recruitment Review Creation](https://i.imgur.com/XrHckB6.png)
+*Screenshot showing the process of adding a recruitment review for a company.*
+
+### Fetching Job Offers (Remotive API):
+![Fetching Job Offers](https://i.imgur.com/4IjftJ5.png)
+*Screenshot showing fetching job offers from the Remotive API.*
+
+### Applying for a Job (Remotive API):
+![Applying for a Job](https://i.imgur.com/UJvnLvZ.png)
+*Screenshot showing the process of applying for a job from the Remotive API.*
+
+### Fetching IT Articles (Dev.to API):
+![Fetching IT Articles](https://i.imgur.com/sBsohBB.png)
+*Screenshot showing fetching IT articles from the Dev.to API.*
+
+### CV Creation:
+![CV Creation](https://i.imgur.com/E3tLAIz.png)
+*Screenshot showing the process of creating a CV in the application.*
+
+### Email Sending:
+![Email Sending](https://i.imgur.com/CTcbATd.png)
+![Delivered Email](https://i.imgur.com/Vfn93CQ.png)
+*Screenshot showing the email sending functionality in the application.*

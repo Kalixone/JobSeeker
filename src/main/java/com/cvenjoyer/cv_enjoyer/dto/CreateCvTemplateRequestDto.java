@@ -14,11 +14,9 @@ public record CreateCvTemplateRequestDto(
         String profileDescription,
 
         @NotBlank
-        @Pattern(regexp = "^(\\+\\d{1,2}\\s?)?\\(?\\d{2,3}\\)?[\\s\\-]?\\d{3}[\\s\\-]?\\d{2}[\\s\\-]?\\d{2}$", message = "Invalid phone number format")
         String contactPhone,
 
         @NotBlank
-        @Pattern(regexp = "^[\\w-]+(?:\\.[\\w-]+)*@[\\w-]+(?:\\.[\\w-]+)+$", message = "Invalid email format")
         String contactEmail,
 
         @NotBlank

@@ -21,13 +21,9 @@ public record UserRegistrationRequestDto(
         String lastName,
         @NotNull
         String city,
-
         String englishLevel,
-
         Set<String> frameworks,
-
         Set<String> programmingLanguages,
-
         Set<String> experienceLevel
 ) {
 }
