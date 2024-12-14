@@ -49,11 +49,11 @@ With the JobSeeker API, users can:
 
 ## 🚀 Running the Project
 ### 1. Prerequisites:
-- JDK 17: Install JDK 17.
-- MySQL: Install and run MySQL server locally.
-- Maven: Install Maven.
-- Google Account: Needed for email configuration (if you want to use this feature).
-- Postman: You'll need Postman to test the API of the application. If you don't have it, download and install Postman.
+- **JDK 17:** Install JDK 17.
+- **MySQL:** Install and run MySQL server locally.
+- **Maven:** Install Maven.
+- **Google Account:** Needed for email configuration (if you want to use this feature).
+- **Postman:** You'll need Postman to test the API of the application. If you don't have it, download and install Postman.
 
 ### 2. Configure MySQL Database:
 - Ensure that you have MySQL installed and running on port 3306.
@@ -99,10 +99,10 @@ With the JobSeeker API, users can:
 
 ### 5. Build and Run the Application:
 - Once all the files are configured and values are set, go to the project’s root directory and build the application by running the following command in your terminal:
-**mvn clean package**
+- **mvn clean package**
 
 - After the build process is complete, run the application with the following command:
-**mvn spring-boot:run**
+- **mvn spring-boot:run**
 - The application should now be running locally on port 8080 (by default). To begin testing its features:
 - In the Browser: Go to http://localhost:8080/api to check if the application is working properly.
 - In Postman: Open Postman and test the various API endpoints. Remember, some endpoints require authentication, so you’ll need to add the JWT token in the request header:
@@ -438,3 +438,8 @@ Below you will find screenshots illustrating the functionalities of selected mod
 👤 GET: /api/statistics/preferred-jobType - gets the preferred job type for the authenticated user.
 
 👤 GET: /api/statistics/count-applications-in-date-range - gets the total number of applications made by the authenticated user within a specific date range.
+
+### 🚨 Troubleshooting Email Sending Endpoint
+- **If you encounter issues with the email sending endpoint, it is possible that your antivirus or firewall is blocking the connection to the Gmail SMTP server. In that case, try temporarily disabling your antivirus software or firewall and test again.**
+
+- **Note: Some security software may block outgoing SMTP traffic, which can prevent email functionality from working properly. Disabling the antivirus or firewall can help resolve this issue during testing.**
