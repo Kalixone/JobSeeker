@@ -90,28 +90,28 @@ The application will be available locally at: http://localhost:8081/api.
 
 You can test the application using tools such as Postman or Swagger. For Postman, remember to pass the authentication (Bearer Token) received after logging in.
 
-### 7. Testing Admin and Standard User Features:
-- **To test admin features, use the following login credentials:**
+### 7. Testing User Features:
+- **To test the user features, follow these steps:**
 
-Email: admin@example.com,
-Password: 123123123
+- **Register a New User:**
 
-- **For testing standard user features, follow these steps:**
+If you don't have an account yet, you must first register a new user. After registration, you will be able to log in and get your JWT Bearer token.
 
-Register a New User:
+User Registration Example
+![User Registration](https://i.imgur.com/u2C17NL.png)
+*Screenshot showing the user registration process.*
 
-- **Endpoint: POST /register**
-  Request Body: Provide details for email, first name, last name, and password.
-  Log In:
+- **Log In:**
 
-- **Endpoint: POST /login**
-  Request Body: Use the email and password from the registration step.
-  Obtain Bearer Token:
+After registering, log in with your user credentials. You will receive a JWT Bearer token.
 
-After logging in, you will receive a JWT Bearer token.
-Access Standard User Features:
+User Login Example
+![User Login](https://i.imgur.com/eeYkVb8.png)
+*Screenshot showing the user login process.*
 
-Include the Bearer token in the Authorization header of your requests to access standard user features.
+- **Include the Bearer Token:**
+
+Important: Remember to include the Bearer token in the Authorization header of your requests where required to access the features of the application.
 
 ---
 
@@ -204,6 +204,52 @@ Include the Bearer token in the Authorization header of your requests to access 
 
 **Swagger Documentation**
 - **API documentation using Swagger for all controllers, providing API endpoints and descriptions.**
+
+---
+
+## 📸 Screenshots
+Below you will find screenshots illustrating the functionalities of selected modules of the application. These are just a few examples—please refer to the full application details for a complete overview.
+
+### User Registration:
+![User Registration](https://i.imgur.com/u2C17NL.png)
+*Screenshot showing the user registration process.*
+
+### User Login:
+![User Login](https://i.imgur.com/eeYkVb8.png)
+*Screenshot showing the user login process.*
+
+### Job Offer Creation:
+![Job Offer Creation](https://i.imgur.com/DEdOEy7.png)
+*Screenshot showing the creation of a job offer.*
+
+### User Information View:
+![User Information View](https://i.imgur.com/5OCTL7i.png)
+*Screenshot showing the details of the logged-in user.*
+
+### Recruitment Review Creation:
+![Recruitment Review Creation](https://i.imgur.com/XrHckB6.png)
+*Screenshot showing the process of adding a recruitment review for a company.*
+
+### Fetching Job Offers (Remotive API):
+![Fetching Job Offers](https://i.imgur.com/4IjftJ5.png)
+*Screenshot showing fetching job offers from the Remotive API.*
+
+### Applying for a Job (Remotive API):
+![Applying for a Job](https://i.imgur.com/UJvnLvZ.png)
+*Screenshot showing the process of applying for a job from the Remotive API.*
+
+### Fetching IT Articles (Dev.to API):
+![Fetching IT Articles](https://i.imgur.com/sBsohBB.png)
+*Screenshot showing fetching IT articles from the Dev.to API.*
+
+### CV Creation:
+![CV Creation](https://i.imgur.com/E3tLAIz.png)
+*Screenshot showing the process of creating a CV in the application.*
+
+### Email Sending:
+![Email Sending](https://i.imgur.com/CTcbATd.png)
+![Delivered Email](https://i.imgur.com/Vfn93CQ.png)
+*Screenshot showing the email sending functionality in the application.*
 
 ---
 
@@ -379,49 +425,3 @@ Include the Bearer token in the Authorization header of your requests to access 
 👤 GET: /api/statistics/preferred-jobType - gets the preferred job type for the authenticated user.
 
 👤 GET: /api/statistics/count-applications-in-date-range - gets the total number of applications made by the authenticated user within a specific date range.
-
----
-
-## 📸 Screenshots
-Below you will find screenshots illustrating the functionalities of selected modules of the application. These are just a few examples—please refer to the full application details for a complete overview.
-
-### User Registration:
-![User Registration](https://i.imgur.com/u2C17NL.png)
-*Screenshot showing the user registration process.*
-
-### User Login:
-![User Login](https://i.imgur.com/eeYkVb8.png)
-*Screenshot showing the user login process.*
-
-### Job Offer Creation:
-![Job Offer Creation](https://i.imgur.com/DEdOEy7.png)
-*Screenshot showing the creation of a job offer.*
-
-### User Information View:
-![User Information View](https://i.imgur.com/5OCTL7i.png)
-*Screenshot showing the details of the logged-in user.*
-
-### Recruitment Review Creation:
-![Recruitment Review Creation](https://i.imgur.com/XrHckB6.png)
-*Screenshot showing the process of adding a recruitment review for a company.*
-
-### Fetching Job Offers (Remotive API):
-![Fetching Job Offers](https://i.imgur.com/4IjftJ5.png)
-*Screenshot showing fetching job offers from the Remotive API.*
-
-### Applying for a Job (Remotive API):
-![Applying for a Job](https://i.imgur.com/UJvnLvZ.png)
-*Screenshot showing the process of applying for a job from the Remotive API.*
-
-### Fetching IT Articles (Dev.to API):
-![Fetching IT Articles](https://i.imgur.com/sBsohBB.png)
-*Screenshot showing fetching IT articles from the Dev.to API.*
-
-### CV Creation:
-![CV Creation](https://i.imgur.com/E3tLAIz.png)
-*Screenshot showing the process of creating a CV in the application.*
-
-### Email Sending:
-![Email Sending](https://i.imgur.com/CTcbATd.png)
-![Delivered Email](https://i.imgur.com/Vfn93CQ.png)
-*Screenshot showing the email sending functionality in the application.*
