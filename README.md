@@ -39,19 +39,15 @@ With the JobSeeker API, users can:
 - **Spring Data JPA**: Simplifies database operations with repository and ORM support.
 - **MySQL**: Relational database for storing user and application data.
 - **Swagger**: Generates interactive API documentation for better usability.
-- **Docker**: Ensures consistent deployment in containerized environments.
-- **JUnit 5**: Framework for comprehensive unit testing.
 - **Maven**: Dependency and project build management.
 - **External APIs**: Enables fetching job listings and articles to provide users with learning resources and job opportunities.
 - **Email Integration**: Facilitates sending job applications and professional emails directly from the platform, enhancing communication efficiency.
 - **CV Template Engine**: Powers the creation of customizable and professional resumes directly through the API or web interface.
-- **PDF Generation Tools**: Ensures high-quality export of CVs and other documents in universally accepted formats.  
+- **DOCX Generation Tools**: Ensures high-quality export of CVs and other documents in universally accepted formats.  
 
 ---
 
 ## 🚀 Running the Project
-**To test the application, follow these steps:**
-
 ### 1. Prerequisites:
 - JDK 17: Install JDK 17.
 - MySQL: Install and run MySQL server locally.
@@ -71,24 +67,24 @@ With the JobSeeker API, users can:
 ### 3. Configure application.properties File:
 - **In the application.properties file (found in src/main/resources), input the following configuration values:**
 
-| Variable Name                                      | Value                                                                    | Description                                                                                      |
-|----------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| spring.datasource.url                              | jdbc:mysql://localhost:3306/cvenjoyer                                    | The URL for connecting to the MySQL database (change `cvenjoyer` to your database name if needed).|
-| spring.datasource.username                         | root                                                                     | The username for your MySQL database.                                                           |
-| spring.datasource.password                         | Piotr1998!                                                               | The password for your MySQL database.                                                           |
-| spring.datasource.driver-class-name                | com.mysql.cj.jdbc.Driver                                                 | The JDBC driver class used to connect to MySQL.                                                 |
-| spring.jpa.hibernate.ddl-auto                      | update                                                                   | Hibernate configuration for automatic schema updates (can be set to `none`, `create`, `create-drop`).|
-| spring.jpa.show-sql                                | true                                                                     | Enables the display of SQL queries in the logs.                                                 |
-| jwt.expiration                                     | 300000000                                                                | The expiration time for the JWT token in milliseconds.                                          |
-| jwt.secret                                         | DefinitelyNotASecretDefinitelyNotASecretDefinitelyNotASecret             | The secret key used to sign and verify the JWT token.                                           |
-| spring.mail.host                                   | smtp.gmail.com                                                           | The SMTP server used for email sending (in this case, Gmail).                                   |
-| spring.mail.port                                   | 587                                                                      | The port used for SMTP communication (587 is the default for Gmail).                            |
-| spring.mail.username                               | kalixkoper@gmail.com                                                     | Your email address used for sending emails.                                                     |
-| spring.mail.password                               | xxx                                                                      | The application-specific password generated for Gmail (not your regular Gmail password).        |
-| spring.mail.protocol                               | smtp                                                                     | The protocol used for sending emails (SMTP in this case).                                       |
-| spring.mail.properties.mail.smtp.auth              | true                                                                     | Enables SMTP authentication.                                                                   |
-| spring.mail.properties.mail.smtp.starttls.enable   | true                                                                     | Enables STARTTLS for secure communication.                                                      |
-| spring.mail.properties.mail.debug                  | true                                                                     | Enables debugging for email sending (useful for troubleshooting).                              |
+| Variable Name                                      | Value                                                        | Description                                                                                     |
+|----------------------------------------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| spring.datasource.url                              | jdbc:mysql://localhost:3306/cvenjoyer                        | The URL for connecting to the MySQL database (change `cvenjoyer` to your database name if needed).|
+| spring.datasource.username                         | root                                                         | The username for your MySQL database.                                                          |
+| spring.datasource.password                         | root                                                         | The password for your MySQL database.                                                          |
+| spring.datasource.driver-class-name                | com.mysql.cj.jdbc.Driver                                     | The JDBC driver class used to connect to MySQL.                                                |
+| spring.jpa.hibernate.ddl-auto                      | update                                                       | Hibernate configuration for automatic schema updates (can be set to `none`, `create`, `create-drop`).|
+| spring.jpa.show-sql                                | true                                                         | Enables the display of SQL queries in the logs.                                                |
+| jwt.expiration                                     | 300000000                                                    | The expiration time for the JWT token in milliseconds.                                         |
+| jwt.secret                                         | DefinitelyNotASecretDefinitelyNotASecretDefinitelyNotASecret | The secret key used to sign and verify the JWT token.                                          |
+| spring.mail.host                                   | smtp.gmail.com                                               | The SMTP server used for email sending (in this case, Gmail).                                  |
+| spring.mail.port                                   | 587                                                          | The port used for SMTP communication (587 is the default for Gmail).                           |
+| spring.mail.username                               | fill it                                                      | Your email address used for sending emails.                                                    |
+| spring.mail.password                               | fill it                                                      | The application-specific password generated for Gmail (not your regular Gmail password).       |
+| spring.mail.protocol                               | smtp                                                         | The protocol used for sending emails (SMTP in this case).                                      |
+| spring.mail.properties.mail.smtp.auth              | true                                                         | Enables SMTP authentication.                                                                   |
+| spring.mail.properties.mail.smtp.starttls.enable   | true                                                         | Enables STARTTLS for secure communication.                                                     |
+| spring.mail.properties.mail.debug                  | true                                                         | Enables debugging for email sending (useful for troubleshooting).                              |
 
 ### 4. Generating an Application-Specific Password for Gmail:
 - If you are using Gmail for email sending, you must generate an application-specific password in your Google account. Here’s how:
@@ -203,8 +199,6 @@ Important: Remember to include the Bearer token in the Authorization header of y
 - **application.properties:** Main application configuration file with database, server settings, etc.
 - **liquibase.properties:** Configuration file for managing database changes.
 - **liquibase.changelog:** Liquibase change log file containing database schema updates and migration scripts.
-- **Dockerfile:** Defines the steps to build the Docker container for the application.
-- **docker-compose.yml:** Docker Compose configuration file for managing multi-container setups (e.g., app + database).
 
 **Models**
 - **Badge:** Entity for user badges.
@@ -220,10 +214,6 @@ Important: Remember to include the Bearer token in the Authorization header of y
 
 **Validation**
 - **EmailValidator:** Validates email formats.
-
-**Infrastructure**
-- **Docker Configuration:** Dockerfile, docker-compose.yml for running the application in Docker containers.
-- **Liquibase Change Logs:** Contains scripts for updating and initializing the database.
 
 **Swagger Documentation**
 - **API documentation using Swagger for all controllers, providing API endpoints and descriptions.**
