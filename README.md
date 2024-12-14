@@ -143,9 +143,10 @@ Important: Remember to include the Bearer token in the Authorization header of y
 - **RemoteApiJobController:** Handles integration with remote job APIs, fetching job listings, and synchronizing them.
 - **UserController:** Manages user-related operations, such as profile management, role updates, and permissions.
 - **UserStatisticsController:** Provides user statistics, including activity tracking and engagement metrics.
+- **ArticleController:** Manages fetching and searching articles, providing endpoints for retrieving articles based on keywords, titles, and descriptions.
 
 **DTOs (Data Transfer Objects)**
-- **DTOs, such as:** CvDto, EmailDto, JobDto, UserDto, RecruitmentReviewDto, UserStatisticsDto, LocationDto, UpdateDtos – Used for transferring data between controllers and services, handling CV, email, job, user, recruitment review, user statistics, location, and entity updates. There are more DTOs, these are just examples.
+- **All DTOs, such as UserDto, EmailDto, JobDto, etc., used for transferring data between controllers and services.**
 
 **Mappers**
 - **CvMapper:** Maps CV-related DTOs to entities and vice versa.
