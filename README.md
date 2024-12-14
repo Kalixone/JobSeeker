@@ -50,47 +50,80 @@ With the JobSeeker API, users can:
 ---
 
 ## 🚀 Running the Project
+**To test the application, follow these steps:**
 
-To run the project, follow these steps:
+- **Prerequisites:**
+   JDK 17: Install JDK 17.
+   MySQL: Install and run MySQL server locally.
+   Maven: Install Maven.
+   Google Account: Needed for email configuration (if you want to use this feature).
+   Postman: You'll need Postman to test the API of the application. If you don't have it, download and install Postman.
 
-### 1. Install Required Tools:
+- **Configure MySQL Database:**
+Ensure that you have MySQL installed and running on port 3306.
+**Create a database. You can name it anything, but for this example, we are using the name cvenjoyer. If you prefer a different name, modify the configuration in the application.properties file accordingly.**
 
-Download and install Docker, Maven, and JDK Development Kit.
+**To create the database, run the following query in MySQL:**
+CREATE DATABASE cvenjoyer;
 
-### 2. Clone the Project Repository:
+**If you decide to use a different database name, remember to update the spring.datasource.url value in the application.properties file to reflect the correct database name:**
+spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
 
-Clone the project repository using Git.
+- **Configure application.properties File:**
+**In the application.properties file (found in src/main/resources), input the following configuration values:**
 
-### 3. Configure Environment Variables:
+# Database Connection Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/cvenjoyer   # Set your database address
+spring.datasource.username=root                                 # Your database username
+spring.datasource.password=Piotr1998!                           # Your database password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver    # JDBC Driver for MySQL
 
-In the `.env` file, provide the necessary environment variables related to the database and Docker. Below is an example configuration:
+# JPA & Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update                             # Automatic database updates
+spring.jpa.show-sql=true                                          # Show SQL queries in logs
 
-| Variable Name         | Value |
-|-----------------------|-------|
-| MYSQLDB_DATABASE      | jobs  |
-| MYSQLDB_USER          | admin |
-| MYSQLDB_PASSWORD      | root  |
-| MYSQLDB_ROOT_PASSWORD | root  |
-| MYSQLDB_LOCAL_PORT    | 3307  |
-| MYSQLDB_DOCKER_PORT   | 3306  |
-| SPRING_LOCAL_PORT     | 8081  |
-| SPRING_DOCKER_PORT    | 8080  |
-| DEBUG_PORT            | 5005  |
+# JWT Configuration
+jwt.expiration=300000000                                         # JWT token expiration time in milliseconds
+jwt.secret=DefinitelyNotASecretDefinitelyNotASecretDefinitelyNotASecret  # Secret key for JWT
 
-### 4. Build the Application:
-Run the command mvn clean package to build the application.
+# Gmail Email Sending Configuration
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=kalixkoper@gmail.com   # Your email address (replace with your own)
+spring.mail.password=xxx                    # Application-specific password generated in Google (see below)
+spring.mail.protocol=smtp
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.debug=true
 
-### 5. Run the Docker Container:
-Execute the command docker-compose build to build the Docker container.
+- **Generating an Application-Specific Password for Gmail:**
+If you are using Gmail for email sending, you must generate an application-specific password in your Google account. Here’s how:
 
-Then, use docker-compose up to start the Docker container.
+Log in to your Google account.
+Open the Google Account Management page.
+In the address bar of your browser, enter the following URL:
+https://myaccount.google.com/apppasswords
+Log in again if prompted.
+Select the application (e.g., "Mail") and device (e.g., "Windows computer") and click Generate.
+Copy the generated application password.
+Paste this password into the application.properties file in the spring.mail.password field.
 
-### 6. Accessing the Application:
-The application will be available locally at: http://localhost:8081/api.
+- **Build and Run the Application:**
+Once all the files are configured and values are set, go to the project’s root directory and build the application by running the following command in your terminal:
+**mvn clean package**
 
-You can test the application using tools such as Postman or Swagger. For Postman, remember to pass the authentication (Bearer Token) received after logging in.
+After the build process is complete, run the application with the following command:
+**mvn spring-boot:run**
+The application should now be running locally on port 8080 (by default). To begin testing its features:
 
-### 7. Testing User Features:
+In the Browser: Go to http://localhost:8080/api to check if the application is working properly.
+
+In Postman: Open Postman and test the various API endpoints. Remember, some endpoints require authentication, so you’ll need to add the JWT token in the request header:
+
+In Postman, go to the Authorization tab, choose Bearer Token, and paste your JWT token in the Token field.
+Now you can begin testing the application in Postman by making requests to the available endpoints.
+
+### 6. Testing User Features:
 - **To test the user features, follow these steps:**
 
 - **Register a New User:**
