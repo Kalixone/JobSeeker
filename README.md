@@ -110,8 +110,6 @@ With the JobSeeker API, users can:
 - Now you can begin testing the application in Postman by making requests to the available endpoints.
 
 ### 6. Testing User Features:
-- **To test the user features, follow these steps:**
-
 - **Register a New User:**
 
 If you don't have an account yet, you must first register a new user. After registration, you will be able to log in and get your JWT Bearer token.
@@ -439,7 +437,9 @@ Below you will find screenshots illustrating the functionalities of selected mod
 
 👤 GET: /api/statistics/count-applications-in-date-range - gets the total number of applications made by the authenticated user within a specific date range.
 
-### 🚨 Troubleshooting Email Sending Endpoint
+---
+
+## 🚨 Troubleshooting Email Sending Endpoint
 - **If you encounter issues with the email sending endpoint, it is possible that your antivirus or firewall is blocking the connection to the Gmail SMTP server. In that case, try temporarily disabling your antivirus software or firewall and test again.**
 
 - **Note: Some security software may block outgoing SMTP traffic, which can prevent email functionality from working properly. Disabling the antivirus or firewall can help resolve this issue during testing.**
