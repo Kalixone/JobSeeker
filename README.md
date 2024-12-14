@@ -52,25 +52,24 @@ With the JobSeeker API, users can:
 ## 🚀 Running the Project
 **To test the application, follow these steps:**
 
-- **Prerequisites:**
-   JDK 17: Install JDK 17.
-   MySQL: Install and run MySQL server locally.
-   Maven: Install Maven.
-   Google Account: Needed for email configuration (if you want to use this feature).
-   Postman: You'll need Postman to test the API of the application. If you don't have it, download and install Postman.
+### 1. Prerequisites:
+- JDK 17: Install JDK 17.
+- MySQL: Install and run MySQL server locally.
+- Maven: Install Maven.
+- Google Account: Needed for email configuration (if you want to use this feature).
+- Postman: You'll need Postman to test the API of the application. If you don't have it, download and install Postman.
 
-- **Configure MySQL Database:**
-Ensure that you have MySQL installed and running on port 3306.
-**Create a database. You can name it anything, but for this example, we are using the name cvenjoyer. If you prefer a different name, modify the configuration in the application.properties file accordingly.**
+### 2. Configure MySQL Database:**
+- Ensure that you have MySQL installed and running on port 3306.
+- Create a database. You can name it anything, but for this example, we are using the name cvenjoyer. If you prefer a different name, modify the configuration in the application.properties file accordingly.
 
-**To create the database, run the following query in MySQL:**
-CREATE DATABASE cvenjoyer;
+- To create the database, run the following query in MySQL:
+- **CREATE DATABASE cvenjoyer;**
+- If you decide to use a different database name, remember to update the spring.datasource.url value in the application.properties file to reflect the correct database name:
+- **spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name**
 
-**If you decide to use a different database name, remember to update the spring.datasource.url value in the application.properties file to reflect the correct database name:**
-spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-
-- **Configure application.properties File:**
-**In the application.properties file (found in src/main/resources), input the following configuration values:**
+### 3. Configure application.properties File:**
+- **In the application.properties file (found in src/main/resources), input the following configuration values:**
 
 # Database Connection Configuration
 spring.datasource.url=jdbc:mysql://localhost:3306/cvenjoyer   # Set your database address
@@ -96,32 +95,28 @@ spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 spring.mail.properties.mail.debug=true
 
-- **Generating an Application-Specific Password for Gmail:**
-If you are using Gmail for email sending, you must generate an application-specific password in your Google account. Here’s how:
+### 4. Generating an Application-Specific Password for Gmail:**
+- If you are using Gmail for email sending, you must generate an application-specific password in your Google account. Here’s how:
+- Log in to your Google account.
+- Open the Google Account Management page.
+- In the address bar of your browser, enter the following URL:
+- **https://myaccount.google.com/apppasswords**
+- Log in again if prompted.
+- Select the application (e.g., "Mail") and device (e.g., "Windows computer") and click Generate.
+- Copy the generated application password.
+- Paste this password into the application.properties file in the spring.mail.password field.
 
-Log in to your Google account.
-Open the Google Account Management page.
-In the address bar of your browser, enter the following URL:
-https://myaccount.google.com/apppasswords
-Log in again if prompted.
-Select the application (e.g., "Mail") and device (e.g., "Windows computer") and click Generate.
-Copy the generated application password.
-Paste this password into the application.properties file in the spring.mail.password field.
-
-- **Build and Run the Application:**
-Once all the files are configured and values are set, go to the project’s root directory and build the application by running the following command in your terminal:
+### 5. Build and Run the Application:**
+- Once all the files are configured and values are set, go to the project’s root directory and build the application by running the following command in your terminal:
 **mvn clean package**
 
-After the build process is complete, run the application with the following command:
+- After the build process is complete, run the application with the following command:
 **mvn spring-boot:run**
-The application should now be running locally on port 8080 (by default). To begin testing its features:
-
-In the Browser: Go to http://localhost:8080/api to check if the application is working properly.
-
-In Postman: Open Postman and test the various API endpoints. Remember, some endpoints require authentication, so you’ll need to add the JWT token in the request header:
-
-In Postman, go to the Authorization tab, choose Bearer Token, and paste your JWT token in the Token field.
-Now you can begin testing the application in Postman by making requests to the available endpoints.
+- The application should now be running locally on port 8080 (by default). To begin testing its features:
+- In the Browser: Go to http://localhost:8080/api to check if the application is working properly.
+- In Postman: Open Postman and test the various API endpoints. Remember, some endpoints require authentication, so you’ll need to add the JWT token in the request header:
+- In Postman, go to the Authorization tab, choose Bearer Token, and paste your JWT token in the Token field.
+- Now you can begin testing the application in Postman by making requests to the available endpoints.
 
 ### 6. Testing User Features:
 - **To test the user features, follow these steps:**
